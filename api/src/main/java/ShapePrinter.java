@@ -4,19 +4,15 @@
  * Use of this source code is governed by an MIT-style license that can be found in the LICENSE file or at https://opensource.org/licenses/MIT.
  */
 
-/**
- * Identifies a point in a plane
- */
-public interface Coordinate {
-    /**
-     * Returns the x value.
-     * @return the x value
-     */
-    int getX();
+import java.util.*;
 
+/**
+ * This class has the responsibility to print shapes
+ */
+public interface ShapePrinter {
     /**
-     * Returns the y value.
-     * @return the y value
+     * Prints a shape list
+     * @param shapes the list of shapes to print
      */
-    int getY();
+    void print(List<Shape> shapes);
 }

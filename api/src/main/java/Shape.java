@@ -9,8 +9,8 @@
  */
 public interface Shape {
     /**
-     * Return the color of the shape.
-     * @return the color of the shape.
+     * Return the colour of the shape.
+     * @return the colour of the shape.
      */
-    Colour getColor();
+    Colour getColour();
 }

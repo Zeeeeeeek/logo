@@ -20,11 +20,11 @@ public interface Cursor {
      */
     Colour getLineColor();
 
-    /**
-     * Returns the cursor's position in the plane.
-     * @return cursor's position
-     */
-    Coordinate getPosition();
+//   /**
+//    * Returns the cursor's position in the plane.
+//    * @return cursor's position
+//    */
+//   Coordinate getPosition();
 
     /**
      * Return true if cursor movement will draw a line

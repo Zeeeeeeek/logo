@@ -11,5 +11,5 @@ public interface Command {
     /**
      * Executes the command with its arguments.
      */
-    void execute();
+    void execute(Plane<Coordinate> plane);
 }

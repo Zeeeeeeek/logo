@@ -5,7 +5,7 @@
  */
 
 /**
- * represents an interpreter that, given a string, returns a command.
+ * Represents an interpreter that, given a string, returns a command.
  */
 public interface InstructionInterpreter {
     Command createCommand(String instruction);
