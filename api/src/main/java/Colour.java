@@ -30,21 +30,4 @@ public interface Colour {
      */
     int getBlue();
 
-    /**
-     * Sets the red component of the color.
-     * @param red integer value between 0 and 255.
-     */
-    void setRed(int red);
-
-    /**
-     * Sets the green component of the color.
-     * @param green integer value between 0 and 255.
-     */
-    void setGreen(int green);
-
-    /**
-     * Sets the blue component of the color.
-     * @param blue integer value between 0 and 255.
-     */
-    void setBlue(int blue);
 }

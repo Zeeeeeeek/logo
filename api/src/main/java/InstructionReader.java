@@ -16,4 +16,10 @@ public interface InstructionReader {
      * @return instructions read from the input source.
      */
     List<String> readLines();
+
+    /**
+     * Reads a single instruction from the input source.
+     * @return the instruction read.
+     */
+    String readLine();
 }

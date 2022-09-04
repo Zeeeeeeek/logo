@@ -9,7 +9,7 @@
  */
 public interface Command {
     /**
-     * Executes the command with its arguments.
+     * Executes the command with its arguments in the given plane.
      */
-    void execute(Plane<Coordinate> plane);
+    void execute(Plane<Point> plane);
 }

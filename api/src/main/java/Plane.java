@@ -9,20 +9,25 @@ import java.util.*;
 /**
  * It represents a plane whose points are identified by coordinates. Manages the shapes drawn on it and the cursor.
  */
-public interface Plane<Coordinate> {
+public interface Plane<Point> {
     /**
-     * Returns the coordinate of the point where the cursor is.
+     * Returns the coordinates of the point where the cursor is.
      *
-     * @return the coordinate of the point where the cursor is.
+     * @return the coordinates of the point where the cursor is.
      */
-    Coordinate getCursorCoordinate();
+    Point getCursorPosition();
 
     /**
-     * Rotate the cursor of the specified angle.
-     *
-     * @param angle the angle of rotation.
+     * Rotates the cursor to the left of the given angle.
+     * @param angle the angle to rotate the cursor.
      */
-    void rotateCursor(int angle);
+    void rotateLeft(int angle);
+
+    /**
+     * Rotates the cursor to the right of the given angle.
+     * @param angle the angle to rotate the cursor.
+     */
+    void rotateRight(int angle);
 
     /**
      * Move the cursor forward of the specified distance.

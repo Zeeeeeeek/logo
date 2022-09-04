@@ -5,9 +5,21 @@
  */
 
 /**
- * Represents an element that performs action based on the received commands.
+ * Represents an element that performs action on a plane based on the received commands.
  */
 public interface Designer {
 
+    /**
+     * Performs the action associated with the given command on its plane.
+     *
+     * @param command the command to be executed.
+     */
     void execute(Command command);
+
+    /**
+     * Returns the plane on which the designer is working.
+     *
+     * @return the plane on which the designer is working.
+     */
+    Plane<Point> getPlane();
 }

@@ -4,15 +4,19 @@
  * Use of this source code is governed by an MIT-style license that can be found in the LICENSE file or at https://opensource.org/licenses/MIT.
  */
 
-import java.util.*;
-
 /**
- * This class has the responsibility to print shapes
+ * Represents a point in a plane identified by its coordinates.
  */
-public interface ShapePrinter {
+public interface Point {
     /**
-     * Prints a shape list
-     * @param shapes the list of shapes to print
+     * Returns the x value.
+     * @return the x value
      */
-    void print(List<Shape> shapes);
+    int getX();
+
+    /**
+     * Returns the y value.
+     * @return the y value
+     */
+    int getY();
 }
