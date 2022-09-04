@@ -4,7 +4,6 @@
  * Use of this source code is governed by an MIT-style license that can be found in the LICENSE file or at https://opensource.org/licenses/MIT.
  */
 
-
 /**
  * Represents a color in the logo language.
  */
@@ -14,20 +13,20 @@ public interface Colour {
      *
      * @return the red component of the color.
      */
-    int getRed();
+    int red();
 
     /**
      * Returns the green component of the color.
      *
      * @return the green component of the color.
      */
-    int getGreen();
+    int green();
 
     /**
      * Returns the blue component of the color.
      *
      * @return the blue component of the color.
      */
-    int getBlue();
+    int blue();
 
 }

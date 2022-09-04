@@ -5,18 +5,29 @@
  */
 
 /**
- * Represents a point in a plane identified by its coordinates.
+ * Represents a simple point ina a plane
+ * @param x x coordinate
+ * @param y y coordinate
  */
-public interface Point {
+public record SimplePoint(int x, int y) implements Point {
+
     /**
      * Returns the x value.
+     *
      * @return the x value
      */
-    int x();
+    @Override
+    public int x() {
+        return 0;
+    }
 
     /**
      * Returns the y value.
+     *
      * @return the y value
      */
-    int y();
+    @Override
+    public int y() {
+        return 0;
+    }
 }

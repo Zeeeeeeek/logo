@@ -5,12 +5,17 @@
  */
 
 /**
- * Represents a shape drawn by the cursor on a plane.
+ * Represents a Line between 2 points
  */
-public interface Shape {
+public record Line(Point start, Point end, Colour colour, int size) implements Shape {
+
     /**
      * Return the colour of the shape.
+     *
      * @return the colour of the shape.
      */
-    Colour colour();
+    @Override
+    public Colour colour() {
+        return this.colour;
+    }
 }
