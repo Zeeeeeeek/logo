@@ -13,14 +13,14 @@ public interface Cursor {
      *
      * @return the area colour
      */
-    Colour getShapeColor();
+    Colour getShapeColour();
 
     /**
      * Returns the colour of the line that is drawn when the cursor moves.
      *
      * @return the line colour
      */
-    Colour getLineColor();
+    Colour getLineColour();
 
     /**
      * Returns the cursor's position in the plane.
@@ -48,14 +48,14 @@ public interface Cursor {
      *
      * @param colour the area colour
      */
-    void setShapeColor(Colour colour);
+    void setShapeColour(Colour colour);
 
     /**
      * Set the colour of the line that is drawn when the cursor moves.
      *
      * @param colour the line colour
      */
-    void setLineColor(Colour colour);
+    void setLineColour(Colour colour);
 
     /**
      * Set the cursor's position in the plane.
@@ -71,9 +71,9 @@ public interface Cursor {
     void setPlot(boolean plot);
 
     /**
-     * Set the angle to which the cursor is pointing
+     * Modify the angle to which the cursor is pointing.
      *
-     * @param direction the angle to which the cursor is pointing
+     * @param angle
      */
-    void setDirection(int direction);
+    void rotate(int angle);
 }

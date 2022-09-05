@@ -12,13 +12,6 @@ import java.util.*;
 public interface InstructionInterpreter {
 
     /**
-     * Returns the command that corresponds to the given instruction.
-     * @param instruction the instruction to interpret.
-     * @return the command that corresponds to the given instruction.
-     */
-    Command createCommand(String instruction);
-
-    /**
      * Returns a list of commands that corresponds to the given instructions.
      * @param instructions the instructions to interpret.
      * @return a list of commands that corresponds to the given instructions.

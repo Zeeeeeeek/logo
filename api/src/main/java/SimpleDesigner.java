@@ -4,24 +4,35 @@
  * Use of this source code is governed by an MIT-style license that can be found in the LICENSE file or at https://opensource.org/licenses/MIT.
  */
 
+
 import java.util.*;
 
-/**
- * Represents an element that performs action on a plane based on the received commands.
- */
-public interface Designer {
+public class SimpleDesigner implements Designer {
+
+    private final SimplePlane plane;
+
+    public SimpleDesigner(SimplePlane plane) {
+        this.plane = Objects.requireNonNull(plane);
+    }
+
 
     /**
      * Performs the action associated with the given commands on its plane.
      *
      * @param commands the commands to be executed.
      */
-    void execute(List<Command> commands);
+    @Override
+    public void execute(List<Command> commands) {
+        //commands.forEach(command -> command.execute(plane));
+    }
 
     /**
      * Returns the plane on which the designer is working.
      *
      * @return the plane on which the designer is working.
      */
-    Plane<Point> getPlane();
+    @Override
+    public Plane<Point> getPlane() {
+        return null;
+    }
 }

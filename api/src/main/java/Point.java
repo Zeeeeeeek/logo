@@ -10,13 +10,15 @@
 public interface Point {
     /**
      * Returns the x value.
+     *
      * @return the x value
      */
-    int x();
+    double x();
 
     /**
      * Returns the y value.
+     *
      * @return the y value
      */
-    int y();
+    double y();
 }

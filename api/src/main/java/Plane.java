@@ -8,8 +8,10 @@ import java.util.*;
 
 /**
  * It represents a plane whose points are identified by coordinates. Manages the shapes drawn on it and the cursor.
+ *
  */
 public interface Plane<Point> {
+
     /**
      * Returns the coordinates of the point where the cursor is.
      *
@@ -65,28 +67,28 @@ public interface Plane<Point> {
      *
      * @param colour the background color.
      */
-    void setLineColor(Colour colour);
+    void setLineColour(Colour colour);
 
     /**
      * Set the shape colour
      *
      * @param colour the background color.
      */
-    void setShapeColor(Colour colour);
+    void setShapeColour(Colour colour);
 
     /**
      * Set the background colour
      *
      * @param colour the background color.
      */
-    void setBackgroundColor(Colour colour);
+    void setBackgroundColour(Colour colour);
 
     /**
      * Returns the background color.
      *
      * @return the background color.
      */
-    Colour getBackgroundColor();
+    Colour getBackgroundColour();
 
     /**
      * Returns the shapes drawn on the plane.

@@ -9,7 +9,7 @@
  * @param x x coordinate
  * @param y y coordinate
  */
-public record SimplePoint(int x, int y) implements Point {
+public record SimplePoint(double x, double y) implements Point {
 
     /**
      * Returns the x value.
@@ -17,7 +17,7 @@ public record SimplePoint(int x, int y) implements Point {
      * @return the x value
      */
     @Override
-    public int x() {
+    public double x() {
         return 0;
     }
 
@@ -27,7 +27,7 @@ public record SimplePoint(int x, int y) implements Point {
      * @return the y value
      */
     @Override
-    public int y() {
+    public double y() {
         return 0;
     }
 }

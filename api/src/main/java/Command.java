@@ -10,6 +10,7 @@
 public interface Command {
     /**
      * Executes the command with its arguments in the given plane.
+     * @param plane the plane on which the command is executed.
      */
     void execute(Plane<Point> plane);
 }
