@@ -8,6 +8,7 @@ package it.unicam.cs.pa.jlogo115006.screen;
 
 import it.unicam.cs.pa.jlogo115006.screen.shapes.*;
 
+import java.sql.*;
 import java.util.*;
 
 /**
@@ -39,27 +40,27 @@ public class SimplePlane implements Plane<SimplePoint> {
      * Creates a new plane with the given cursor and background colour.
      *
      * @param backgroundColour the background colour
-     * @param width the width of the plane
+     * @param width            the width of the plane
      * @param height           the height of the plane
      */
     public SimplePlane(Colour backgroundColour, double width, double height) {
-        this.shapes = new Stack<>();
-        this.home = new SimplePoint(width/2, height/2);
+        this.shapes = new ArrayList<>();
+        this.home = new SimplePoint(width / 2, height / 2);
         this.cursor = new SimpleCursor(home);
         this.backgroundColour = Objects.requireNonNull(backgroundColour);
         this.width = width;
         this.height = height;
     }
 
-    /**
-     * Returns the coordinates of the point where the cursor is.
-     *
-     * @return the coordinates of the point where the cursor is.
-     */
-    @Override
-    public SimplePoint getCursorPosition() {
-        return null; //TODO implement
-    }
+//   /**
+//    * Returns the coordinates of the point where the cursor is.
+//    *
+//    * @return the coordinates of the point where the cursor is.
+//    */
+//   @Override todo fix
+//   public SimplePoint getCursorPosition() {
+//       return cursor.getPosition();
+//   }
 
     /**
      * Rotates the cursor to the left of the given angle.
@@ -92,7 +93,7 @@ public class SimplePlane implements Plane<SimplePoint> {
      */
     @Override
     public void moveForward(int distance) {
-
+        move(distance);
     }
 
     /**
@@ -102,8 +103,63 @@ public class SimplePlane implements Plane<SimplePoint> {
      */
     @Override
     public void moveBackward(int distance) {
-
+        move(-distance);
     }
+
+    private void move(int distance) {
+        Point start = cursor.getPosition();
+        SimplePoint end = newPosition(start, distance);
+        cursor.setPosition(end);
+        if (isPlot()) addNewLineFromPoints(start, end);
+    }
+
+    private void addNewLineFromPoints(Point start, Point end) {
+        Line line = new Line(start, end, cursor.getLineColour(), cursor.getPenSize());
+        shapes.add(line);
+        checkForNewPolygon();
+    }
+
+    private void checkForNewPolygon() {
+        int adjacentLineCounter = 0;
+        for (int i = shapes.size() - 1; i > 0; i--) {
+            if (shapes.get(i) instanceof Polygon || shapes.get(i - 1) instanceof Polygon) return;
+            if (!areAdjacentLines((Line) shapes.get(i), (Line) shapes.get(i - 1))) break;
+            adjacentLineCounter++;
+        }
+        if (adjacentLineCounter >= 2)
+            shapes.add(new Polygon(retrieveLines(adjacentLineCounter), cursor.getShapeColour()));
+    }
+
+    private List<Shape> retrieveLines(int adjacentLineCounter) {
+        List<Shape> newPolygonLines = new ArrayList<>();
+        for (int i = 0; i < adjacentLineCounter; i++) {
+            newPolygonLines.add(shapes.remove(i));
+        }
+        return newPolygonLines;
+    }
+
+    private boolean areAdjacentLines(Line first, Line second) {
+        return first.start() == second.end();
+    }
+
+    private SimplePoint newPosition(Point start, int distance) {
+        double x = start.x() + (distance + cos(cursor.getDirection()));
+        double y = start.y() + (distance + sin(cursor.getDirection()));
+        if (x > width) x = width;
+        else if (x < 0) x = 0;
+        if (y > height) y = height;
+        else if (y < 0) y = 0;
+        return new SimplePoint(x, y);
+    }
+
+    private double sin(int degrees) {
+        return Math.sin(Math.toRadians(degrees));
+    }
+
+    private double cos(int degrees) {
+        return Math.cos(Math.toRadians(degrees));
+    }
+
 
     /**
      * Returns true if a cursor movement will draw a line, false otherwise.
