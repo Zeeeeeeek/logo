@@ -18,7 +18,6 @@ public class SimpleCursor implements Cursor {
 
     private final static Logger logger = Logger.getLogger(SimpleCursor.class.getName());
 
-    private Point position;
     private int direction;
     private boolean plot;
     private Colour lineColour;
@@ -29,28 +28,30 @@ public class SimpleCursor implements Cursor {
     /**
      * Creates a new cursors in the home position, with the default direction, plot mode and colours.
      *
-     * @param home home position of the cursor
      */
-    public SimpleCursor(Point home) {
-        this(home, 0, true, new RGBColour(0, 0, 0),
-                new RGBColour(255, 255, 255));
+    public SimpleCursor() {
+        this(0, true, new RGBColour(0, 0, 0),
+                new RGBColour(255, 255, 255), 1);
     }
 
     /**
-     * Creates a new cursor in the given position with the specified direction, plot mode and colours.
+     * Creates a new cursor in the given position with the specified direction, plot mode, colours and line
+     * size.
      *
-     * @param position   the position of the cursor
      * @param direction  the direction of the cursor
      * @param plot       the plot mode of the cursor
      * @param lineColour the line colour of the cursor
      * @param shapeColour the area colour of the cursor
+     *
+     * @throws NullPointerException if any of the colours is null
+     * @throws IllegalArgumentException if the line size is less than 1
      */
-    public SimpleCursor(Point position, int direction, boolean plot, Colour lineColour, Colour shapeColour) {
-        this.position = Objects.requireNonNull(position);
+    public SimpleCursor(int direction, boolean plot, Colour lineColour, Colour shapeColour, int lineSize) {
         this.direction = validateDirection(direction);
         this.plot = plot;
         this.lineColour = Objects.requireNonNull(lineColour);
         this.shapeColour = Objects.requireNonNull(shapeColour);
+        this.lineSize = validatePenSize(lineSize);
         logger.info("New cursor successfully created");
     }
 
@@ -82,16 +83,6 @@ public class SimpleCursor implements Cursor {
     @Override
     public Colour getLineColour() {
         return this.lineColour;
-    }
-
-    /**
-     * Returns the cursor's position in the plane.
-     *
-     * @return cursor's position
-     */
-    @Override
-    public Point getPosition() {
-        return this.position;
     }
 
     /**
@@ -131,8 +122,22 @@ public class SimpleCursor implements Cursor {
      */
     @Override
     public void setPenSize(int size) {
-        if(size < 1) throw new IllegalArgumentException("Pen size must be greater or equal to 1");
-        this.lineSize = size;
+        this.lineSize = validatePenSize(size);
+    }
+
+    /**
+     * Utility method used to validate the pen size.
+     * @param size the pen size to be validated
+     * @return the passed size if it is greater or equal to 1
+     *
+     * @throws IllegalArgumentException if the size is less than 1
+     */
+    private int validatePenSize(int size) {
+        if (size < 1) {
+            logger.severe("Tried to set pen size to a value less than 1");
+            throw new IllegalArgumentException("Pen size must be greater or equal to 1");
+        }
+        return size;
     }
 
     /**
@@ -155,15 +160,6 @@ public class SimpleCursor implements Cursor {
         this.lineColour = Objects.requireNonNull(colour);
     }
 
-    /**
-     * Set the cursor's position in the plane.
-     *
-     * @param position cursor's position
-     */
-    @Override
-    public void setPosition(Point position) {
-        this.position = Objects.requireNonNull(position);
-    }
 
     /**
      * Changes the cursor's plot value.

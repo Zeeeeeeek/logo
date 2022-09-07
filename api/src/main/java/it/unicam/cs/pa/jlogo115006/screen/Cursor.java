@@ -27,13 +27,6 @@ public interface Cursor {
     Colour getLineColour();
 
     /**
-     * Returns the cursor's position in the plane.
-     *
-     * @return cursor's position
-     */
-    Point getPosition();
-
-    /**
      * Return true if cursor movement will draw a line
      *
      * @return true if cursor movement will draw a line, false otherwise
@@ -73,12 +66,6 @@ public interface Cursor {
      */
     void setLineColour(Colour colour);
 
-    /**
-     * Set the cursor's position in the plane.
-     *
-     * @param position cursor's position
-     */
-    void setPosition(Point position);
 
     /**
      * Changes the cursor's plot value.

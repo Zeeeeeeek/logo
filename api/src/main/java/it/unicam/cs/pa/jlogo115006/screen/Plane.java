@@ -20,7 +20,7 @@ public interface Plane<P extends Point> {
      *
      * @return the coordinates of the point where the cursor is.
      */
-    //P getCursorPosition();
+    P getCursorPosition();
 
     /**
      * Rotates the cursor to the left of the given angle.
