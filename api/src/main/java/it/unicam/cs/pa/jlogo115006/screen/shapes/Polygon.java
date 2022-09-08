@@ -17,7 +17,7 @@ public record Polygon(List<Shape> lines, Colour colour) implements Shape {
     public Polygon{
         Objects.requireNonNull(lines);
         Objects.requireNonNull(colour);
-        logger.info("New it.unicam.cs.pa.jlogo115006.screen.shapes.Polygon successfully created");
+        logger.info("Polygon successfully created");
     }
 
     /**

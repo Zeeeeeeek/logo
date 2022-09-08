@@ -22,7 +22,7 @@ public record RGBColour(int red, int green, int blue) implements Colour {
      * @param green green component
      * @param blue blue component
      *
-     * @throws IllegalArgumentException if one or more values are not in the range [0, 360].
+     * @throws IllegalArgumentException if one or more values are not in the range [0, 255].
      */
     public RGBColour {
         checkColour(red);

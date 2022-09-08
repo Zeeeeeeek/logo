@@ -9,11 +9,14 @@ package it.unicam.cs.pa.jlogo115006.screen;
 import it.unicam.cs.pa.jlogo115006.screen.shapes.*;
 
 import java.util.*;
+import java.util.logging.*;
 
 /**
  * A two-dimensional plane that handles the shapes and the cursor
  */
 public class SimplePlane implements Plane<SimplePoint> {
+
+    private final static Logger logger = Logger.getLogger(SimplePlane.class.getName());
 
     private final List<Shape> shapes;
     private final Cursor cursor;
@@ -53,6 +56,7 @@ public class SimplePlane implements Plane<SimplePoint> {
         this.width = requirePositive(width);
         this.height = requirePositive(height);
         this.cursorPosition = Objects.requireNonNull(cursorPosition);
+        logger.info("New simple plane successfully created");
     }
 
     private double requirePositive(double value) {
@@ -67,7 +71,7 @@ public class SimplePlane implements Plane<SimplePoint> {
     */
    @Override
    public SimplePoint getCursorPosition() {
-       return this.homePoint;
+       return this.cursorPosition;
    }
 
     /**
@@ -91,7 +95,17 @@ public class SimplePlane implements Plane<SimplePoint> {
     }
 
     private void rotateCursor(int angle) {
+        logger.info("Rotating cursor of " + angle + " degrees");
         this.cursor.rotate(angle);
+    }
+
+    /**
+     * Returns the cursor used in the plane.
+     * @return the cursor used in the plane.
+     */
+    @Override
+    public Cursor getCursor() {
+        return this.cursor;
     }
 
     /**
@@ -100,7 +114,7 @@ public class SimplePlane implements Plane<SimplePoint> {
      * @param distance the distance of the movement.
      */
     @Override
-    public void moveForward(int distance) {
+    public void moveForward(double distance) {
         move(distance);
     }
 
@@ -110,7 +124,7 @@ public class SimplePlane implements Plane<SimplePoint> {
      * @param distance the distance of the movement.
      */
     @Override
-    public void moveBackward(int distance) {
+    public void moveBackward(double distance) {
         move(-distance);
     }
 
@@ -118,8 +132,8 @@ public class SimplePlane implements Plane<SimplePoint> {
      * Utility method to move the cursor of the specified distance.
      * @param distance the distance of the movement.
      */
-    private void move(int distance) {
-        Point start = this.cursorPosition;
+    private void move(double distance) {
+        SimplePoint start = this.cursorPosition;
         SimplePoint end = newPosition(start, distance);
         this.cursorPosition = end;
         if (isPlot()) addNewLineFromPoints(start, end);
@@ -142,24 +156,24 @@ public class SimplePlane implements Plane<SimplePoint> {
      * adds the polygon to the list.
      */
     private void checkForNewPolygon() {
-        int adjacentLineCounter = 0;
+        int adjacentPointsCounter = 0;
         for (int i = shapes.size() - 1; i > 0; i--) {
             if (shapes.get(i) instanceof Polygon || shapes.get(i - 1) instanceof Polygon) return;
             if (!areAdjacentLines((Line) shapes.get(i), (Line) shapes.get(i - 1))) break;
-            adjacentLineCounter++;
+            adjacentPointsCounter++;
         }
-        if (adjacentLineCounter >= 2)
-            shapes.add(new Polygon(retrieveLines(adjacentLineCounter), cursor.getShapeColour()));
+        if (adjacentPointsCounter >= 2)
+            shapes.add(new Polygon(retrieveLines(adjacentPointsCounter), cursor.getShapeColour()));
     }
 
     /**
      * Remove and return the specified number of lines from the shapes list.
-     * @param adjacentLineCounter the number of lines to remove
+     * @param adjacentLineIndex the number of lines to remove
      * @return the list of lines removed
      */
-    private List<Shape> retrieveLines(int adjacentLineCounter) {
+    private List<Shape> retrieveLines(int adjacentLineIndex) {
         List<Shape> newPolygonLines = new ArrayList<>();
-        for (int i = 0; i < adjacentLineCounter; i++) {
+        for (int i = adjacentLineIndex; i >= 0; i--) {
             newPolygonLines.add(shapes.remove(i));
         }
         return newPolygonLines;
@@ -172,7 +186,7 @@ public class SimplePlane implements Plane<SimplePoint> {
      * @return true if the two lines are adjacent, false otherwise
      */
     private boolean areAdjacentLines(Line first, Line second) {
-        return first.start() == second.end();
+        return first.start().equals(second.end());
     }
 
     /**
@@ -182,9 +196,9 @@ public class SimplePlane implements Plane<SimplePoint> {
      * @param distance the distance of the movement
      * @return the next cursor's position
      */
-    private SimplePoint newPosition(Point start, int distance) {
-        double x = start.x() + (distance + cos(cursor.getDirection()));
-        double y = start.y() + (distance + sin(cursor.getDirection()));
+    private SimplePoint newPosition(Point start, double distance) {
+        double x = start.x() + (distance * cosWithDegrees(cursor.getDirection()));
+        double y = start.y() + (distance * sinWithDegrees(cursor.getDirection()));
         if (x > width) x = width;
         else if (x < 0) x = 0;
         if (y > height) y = height;
@@ -197,7 +211,7 @@ public class SimplePlane implements Plane<SimplePoint> {
      * @param degrees the angle
      * @return the sine of the specified angle
      */
-    private double sin(int degrees) {
+    private double sinWithDegrees(int degrees) {
         return Math.sin(Math.toRadians(degrees));
     }
 
@@ -206,7 +220,7 @@ public class SimplePlane implements Plane<SimplePoint> {
      * @param degrees the angle
      * @return the cosine of the specified angle
      */
-    private double cos(int degrees) {
+    private double cosWithDegrees(int degrees) {
         return Math.cos(Math.toRadians(degrees));
     }
 

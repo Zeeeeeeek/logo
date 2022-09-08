@@ -22,6 +22,8 @@ public interface Plane<P extends Point> {
      */
     P getCursorPosition();
 
+    Cursor getCursor();
+
     /**
      * Rotates the cursor to the left of the given angle.
      * @param angle the angle to rotate the cursor.
@@ -39,14 +41,14 @@ public interface Plane<P extends Point> {
      *
      * @param distance the distance of the movement.
      */
-    void moveForward(int distance);
+    void moveForward(double distance);
 
     /**
      * Move the cursor backward of the specified distance.
      *
      * @param distance the distance of the movement.
      */
-    void moveBackward(int distance);
+    void moveBackward(double distance);
 
     /**
      * Returns true if a cursor movement will draw a line, false otherwise.
