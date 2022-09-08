@@ -10,6 +10,7 @@ import it.unicam.cs.pa.jlogo115006.screen.shapes.*;
 import org.junit.jupiter.api.*;
 
 import java.util.*;
+import java.util.stream.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -152,6 +153,26 @@ public class SimplePlaneTest {
         plane.moveForward(5);
         assertEquals(1, countLines(plane.getShapes()));
         assertEquals(1, countPolygons(plane.getShapes()));
+    }
+
+    @Test
+    public void shouldCreateLinesOfDifferentSize() {
+        Plane<SimplePoint> plane = new SimplePlane(30, 30);
+        plane.moveForward(2);
+        plane.rotateLeft(90);
+        plane.setPenSize(5);
+        plane.moveForward(2);
+        verifyLineSize(plane.getShapes(), 5);
+        verifyLineSize(plane.getShapes(), 1);
+    }
+
+    private void verifyLineSize(List<Shape> lst, int size) {
+        Set<Integer> set = lst.stream()
+                .filter(s -> s instanceof Line)
+                .map(s -> (Line) s)
+                .map(Line::size)
+                .collect(Collectors.toSet());
+        assertTrue(set.contains(size));
     }
 
 
