@@ -24,12 +24,12 @@ public record SimplePoint(double x, double y) implements Point {
      * @throws IllegalArgumentException if the x or y coordinates are negative
      */
     public SimplePoint {
-        doubleRequireNonNegative(x);
-        doubleRequireNonNegative(y);
+        requireNonNegativeDouble(x);
+        requireNonNegativeDouble(y);
     }
 
-    private void doubleRequireNonNegative(double coordinate) {
-        if (x < 0) {
+    private void requireNonNegativeDouble(double coordinate) {
+        if (coordinate < 0) {
             logger.severe("Tried to create a point with a negative coordinate");
             throw new IllegalArgumentException("The x or y value must be non-negative");
         }

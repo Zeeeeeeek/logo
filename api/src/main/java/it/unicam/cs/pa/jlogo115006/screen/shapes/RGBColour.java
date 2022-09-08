@@ -25,9 +25,9 @@ public record RGBColour(int red, int green, int blue) implements Colour {
      * @throws IllegalArgumentException if one or more values are not in the range [0, 255].
      */
     public RGBColour {
-        checkColour(red);
-        checkColour(green);
-        checkColour(blue);
+        isValidColourValue(red);
+        isValidColourValue(green);
+        isValidColourValue(blue);
         logger.info("New RGB colour successfully created");
     }
 
@@ -38,7 +38,7 @@ public record RGBColour(int red, int green, int blue) implements Colour {
      *
      * @throws IllegalArgumentException if an invalid value is passed
      */
-    private void checkColour(int colour) {
+    private void isValidColourValue(int colour) {
         if (colour < 0 || colour > 255) {
             logger.severe("Tried to create a colour with an invalid value");
             throw new IllegalArgumentException("Color values should be in the range [0,360]. Value entered" + colour);
@@ -95,7 +95,10 @@ public record RGBColour(int red, int green, int blue) implements Colour {
      * @throws IllegalArgumentException if the list does not contain exactly 3 values
      */
     public static RGBColour colourOfList(List<String> values) {
-        if(values.size() != 3) throw new IllegalArgumentException("Invalid number of values");
+        if(values.size() != 3) {
+            logger.severe("List of values does not contain exactly 3 values for RGB colour");
+            throw new IllegalArgumentException("Invalid number of values");
+        }
         return colourOf(values.get(0), values.get(1), values.get(2));
     }
 }
