@@ -17,8 +17,9 @@ public class RotateCommand implements Command{
     private final int angle;
 
     public RotateCommand(List<String> args) {
-        if(args.size() != 2) throw new IllegalArgumentException("Wrong number of arguments");
-
+        if(args.size() != 2) {
+            throw new IllegalArgumentException("Wrong number of arguments");
+        }
         this.orientation = RotateOrientation.fromString(args.get(0));
         this.angle = Integer.parseInt(args.get(1));
     }
@@ -28,7 +29,7 @@ public class RotateCommand implements Command{
      * @param plane the plane on which the command is executed.
      */
     @Override
-    public void execute(Plane<Point> plane) {
+    public <P extends Point> void execute(Plane<P> plane) {
         if (orientation == RotateOrientation.LEFT) {
             plane.rotateLeft(angle);
         } else {

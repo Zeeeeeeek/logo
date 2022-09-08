@@ -27,7 +27,7 @@ public class ChangePenStatusCommand implements Command {
      * @param plane the plane on which the command is executed.
      */
     @Override
-    public void execute(Plane<Point> plane) {
+    public <P extends Point> void execute(Plane<P> plane) {
         if (status == PenStatus.UP) {
             plane.penUp();
         } else {

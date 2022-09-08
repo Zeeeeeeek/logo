@@ -37,7 +37,7 @@ public class SetScreenColorCommand implements Command {
      * @param plane the plane on which the command is executed.
      */
     @Override
-    public void execute(Plane<Point> plane) {
+    public <P extends Point> void execute(Plane<P> plane) {
         plane.setBackgroundColour(newBackgroundColour);
     }
 
@@ -54,4 +54,5 @@ public class SetScreenColorCommand implements Command {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
+
 }

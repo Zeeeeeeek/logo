@@ -4,19 +4,16 @@
  * Use of this source code is governed by an MIT-style license that can be found in the LICENSE file or at https://opensource.org/licenses/MIT.
  */
 
-package it.unicam.cs.pa.jlogo115006.commands;
+package it.unicam.cs.pa.jlogo115006.screen.commands;
 
 import it.unicam.cs.pa.jlogo115006.screen.*;
 import it.unicam.cs.pa.jlogo115006.screen.shapes.*;
+import org.junit.jupiter.api.*;
 
-/**
- * Represents a command in the logo language.
- */
-public interface Command {
-    /**
-     * Executes the command with its arguments in the given plane.
-     * @param plane the plane on which the command is executed.
-     */
-    <P extends Point> void  execute(Plane<P> plane);
-
+public class HomeCommandTest {
+    @Test
+    public void shouldGoHome() {
+        Plane<SimplePoint> plane = new SimplePlane(30,30);
+        plane.moveForward(10);
+    }
 }

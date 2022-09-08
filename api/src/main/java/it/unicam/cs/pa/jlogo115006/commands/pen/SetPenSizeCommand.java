@@ -26,7 +26,7 @@ public class SetPenSizeCommand implements Command {
      * @param plane the plane on which the command is executed.
      */
     @Override
-    public void execute(Plane<Point> plane) {
+    public <P extends Point> void execute(Plane<P> plane) {
         plane.setPenSize(size);
     }
 }
