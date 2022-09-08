@@ -82,6 +82,9 @@ public record RGBColour(int red, int green, int blue) implements Colour {
      * @param green green component
      * @param blue blue component
      * @return a new colour with the given values
+     *
+     * @throws IllegalArgumentException if one or more values are not in the range [0, 255].
+     * @throws NumberFormatException if one or more values are not numbers.
      */
     public static RGBColour colourOf(String red, String green, String blue) {
         return new RGBColour(Integer.parseInt(red), Integer.parseInt(green), Integer.parseInt(blue));
@@ -92,7 +95,9 @@ public record RGBColour(int red, int green, int blue) implements Colour {
      * @param values list of values
      * @return a new colour with the given values
      *
-     * @throws IllegalArgumentException if the list does not contain exactly 3 values
+     * @throws IllegalArgumentException if the list does not contain exactly 3 values or if one or more values are
+     * not in the range [0, 255].
+     * @throws NumberFormatException if one or more values are not numbers.
      */
     public static RGBColour colourOfList(List<String> values) {
         if(values.size() != 3) {

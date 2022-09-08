@@ -4,9 +4,9 @@
  * Use of this source code is governed by an MIT-style license that can be found in the LICENSE file or at https://opensource.org/licenses/MIT.
  */
 
-package it.unicam.cs.pa.jlogo115006.screen.commands;
+package it.unicam.cs.pa.jlogo115006.commands.movement;
 
-import it.unicam.cs.pa.jlogo115006.commands.*;
+import it.unicam.cs.pa.jlogo115006.commands.movement.*;
 import it.unicam.cs.pa.jlogo115006.screen.*;
 import it.unicam.cs.pa.jlogo115006.screen.shapes.*;
 import org.junit.jupiter.api.*;
@@ -29,6 +29,11 @@ public class RotateCommandTest {
 
     private <P extends Point> void rotate(String direction, int angle, Plane<P> plane) {
         new RotateCommand(List.of(direction, Integer.toString(angle))).execute(plane);
+    }
+
+    @Test
+    public void shouldThrowExceptionWithWrongArgument() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new RotateCommand(List.of("wrong", "90")));
     }
 
 }

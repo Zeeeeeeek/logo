@@ -18,6 +18,11 @@ public class ChangePenStatusCommand implements Command {
 
     private final PenStatus status;
 
+    /**
+     * Creates a new ChangePenStatusCommand with the given status.
+     * @param arg the status to set
+     * @throws IllegalArgumentException if the status is invalid
+     */
     public ChangePenStatusCommand(String arg) {
         this.status = PenStatus.fromString(arg);
     }

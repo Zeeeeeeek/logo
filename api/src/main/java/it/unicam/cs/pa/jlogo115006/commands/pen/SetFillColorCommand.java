@@ -13,13 +13,18 @@ import it.unicam.cs.pa.jlogo115006.screen.shapes.*;
 import java.util.*;
 
 /**
- * Represents a command that set the area colour.
+ * Represents a command that change the area colour.
  */
 public class SetFillColorCommand implements Command {
     
     private final Colour fillColour;
-    
-    
+
+    /**
+     * Creates a new {@link SetFillColorCommand} with the colour values.
+     * @param args color values
+     * @throws IllegalArgumentException if the arguments are invalid or if one or more values are not in the range [0, 255].
+     * @throws NumberFormatException if the strings does not contain a parsable integer
+     */
     public SetFillColorCommand(List<String> args) {
         this.fillColour = RGBColour.colourOfList(args);
     }

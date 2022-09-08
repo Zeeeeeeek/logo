@@ -16,7 +16,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class SimplePlaneTest {
 
-    private final static double EPSILON = 0.000000000000001;
     @Test
     public void shouldBeCreatedWithDefaultValues() {
         Plane<SimplePoint> plane = new SimplePlane(100, 100);
@@ -114,12 +113,26 @@ public class SimplePlaneTest {
 
 
     @Test
-    public void shouldCreatePolygon() {
+    public void shouldCreateTriangle() {
         Plane<SimplePoint> plane = new SimplePlane(20, 20);
         plane.moveForward(5);
         plane.rotateLeft(120);
         plane.moveForward(5);
         plane.rotateLeft(120);
+        plane.moveForward(5);
+        assertEquals(1, countPolygons(plane.getShapes()));
+        assertEquals(0, countLines(plane.getShapes()));
+    }
+
+    @Test
+    public void shouldCreateSquare() {
+        Plane<SimplePoint> plane = new SimplePlane(30, 30);
+        plane.moveForward(5);
+        plane.rotateLeft(90);
+        plane.moveForward(5);
+        plane.rotateLeft(90);
+        plane.moveForward(5);
+        plane.rotateLeft(90);
         plane.moveForward(5);
         assertEquals(1, countPolygons(plane.getShapes()));
         assertEquals(0, countLines(plane.getShapes()));
@@ -180,8 +193,8 @@ public class SimplePlaneTest {
 
 
     private void verifyXAndY(double actualX, double actualY, double expectedX, double expectedY) {
-        assertEquals(expectedX, actualX);
-        assertEquals(expectedY, actualY);
+        assertEquals(expectedX, actualX, 0.0000001);
+        assertEquals(expectedY, actualY, 0.0000001);//todo crea un metodo veify con delta da aggiungere per test con eccesso bordi
     }
 
     private double getCursorX(Plane<SimplePoint> plane) {

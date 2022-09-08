@@ -18,10 +18,17 @@ import java.util.*;
 public class SetPenColorCommand implements Command {
     private final Colour penColour;
 
-    public SetPenColorCommand(List<String>args) {
+    /**
+     * Create a new {@link SetPenColorCommand} with the given colour values.
+     *
+     * @param args list containing the colour values.
+     * @throws NumberFormatException    if one or more values are not numbers.
+     * @throws IllegalArgumentException if the list does not contain exactly 3 values or
+     *                                  if one or more values are not in the range [0, 255].
+     */
+    public SetPenColorCommand(List<String> args) {
         this.penColour = RGBColour.colourOfList(args);
     }
-
 
 
     /**

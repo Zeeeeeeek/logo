@@ -11,12 +11,18 @@ import it.unicam.cs.pa.jlogo115006.screen.*;
 import it.unicam.cs.pa.jlogo115006.screen.shapes.*;
 
 /**
- * Represents the command to set the pen size.
+ * Represents the command that set the pen size.
  */
 public class SetPenSizeCommand implements Command {
 
     private final int size;
 
+    /**
+     * Create a new {@link SetPenSizeCommand} with the given size.
+     * @param size pen size
+     *
+     * @throws NumberFormatException if the size is not a number.
+     */
     public SetPenSizeCommand(String size) {
         this.size = Integer.parseInt(size);
     }
@@ -24,6 +30,7 @@ public class SetPenSizeCommand implements Command {
      * Executes the command with its arguments in the given plane.
      *
      * @param plane the plane on which the command is executed.
+     * @throws IllegalArgumentException if the size is less than 1.
      */
     @Override
     public <P extends Point> void execute(Plane<P> plane) {

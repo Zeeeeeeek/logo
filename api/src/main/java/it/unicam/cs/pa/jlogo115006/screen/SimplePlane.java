@@ -162,8 +162,13 @@ public class SimplePlane implements Plane<SimplePoint> {
             if (!areAdjacentLines((Line) shapes.get(i), (Line) shapes.get(i - 1))) break;
             adjacentPointsCounter++;
         }
-        if (adjacentPointsCounter >= 2)
+        if (adjacentPointsCounter >= 2 && isClosedPolygon(adjacentPointsCounter)) {
             shapes.add(new Polygon(retrieveLines(adjacentPointsCounter), cursor.getShapeColour()));
+        }
+    }
+
+    private boolean isClosedPolygon(int adjacentPointsCounter) {
+        return areAdjacentLines((Line) shapes.get(shapes.size()-1-adjacentPointsCounter), (Line) shapes.get(shapes.size()-1));
     }
 
     /**
@@ -323,6 +328,8 @@ public class SimplePlane implements Plane<SimplePoint> {
      * Sets the pen size.
      *
      * @param size the pen size.
+     *
+     * @throws IllegalArgumentException if the size is less than 1
      */
     @Override
     public void setPenSize(int size) {

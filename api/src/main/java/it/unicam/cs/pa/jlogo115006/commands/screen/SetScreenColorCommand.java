@@ -25,6 +25,9 @@ public class SetScreenColorCommand implements Command {
      * Creates a new instance of the command with the given colour.
      *
      * @param args colour values.
+     *
+     * @throws IllegalArgumentException if the list does not contain exactly 3 values or if one or more values are not in the range [0, 255]
+     * @throws NumberFormatException if one or more values are not numbers
      */
     public SetScreenColorCommand(List<String> args) {
         newBackgroundColour = RGBColour.colourOfList(args);
