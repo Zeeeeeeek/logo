@@ -47,6 +47,15 @@ public class TextExporter implements ShapeExporter {
                         }
                     }
             );
+        close();
+    }
+
+    private void close() {
+        try {
+            writer.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
 
