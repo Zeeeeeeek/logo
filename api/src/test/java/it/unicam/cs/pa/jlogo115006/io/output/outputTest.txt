@@ -1,0 +1,10 @@
+Line start: (0.0; 0.0) end: (10.0; 10.0) colour: rgb(255,255,255) Size: 1
+Line start: (1.0; 0.0) end: (20.0; 10.0) colour: rgb(3,6,8) Size: 1
+Line start: (3.0; 0.0) end: (30.0; 10.0) colour: rgb(15,2,88) Size: 1
+Polygon Colour: rgb(255,255,255)
+	Polygon lines:
+		Line start: (0.0; 0.0) end: (10.0; 10.0) colour: rgb(255,255,5) Size: 1
+		Line start: (1.0; 7.0) end: (20.0; 45.0) colour: rgb(3,6,8) Size: 3
+		Line start: (5.0; 0.0) end: (6.0; 10.0) colour: rgb(145,2,76) Size: 4
+		
+Line start: (4.0; 0.0) end: (30.0; 10.0) colour: rgb(15,2,88) Size: 1
