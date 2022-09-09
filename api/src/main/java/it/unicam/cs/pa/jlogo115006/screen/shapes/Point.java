@@ -33,6 +33,6 @@ public interface Point {
     }
 
     private static boolean areDoubleEquals(double val1, double val2) {
-        return val1 == val2 || Math.abs(val1 - val2) <= 0.0000001;
+        return val1 == val2 || Math.abs(val1 - val2) <= 0.0001;
     }
 }

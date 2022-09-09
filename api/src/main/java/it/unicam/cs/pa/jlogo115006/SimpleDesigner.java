@@ -4,7 +4,8 @@
  * Use of this source code is governed by an MIT-style license that can be found in the LICENSE file or at https://opensource.org/licenses/MIT.
  */
 
-package it.unicam.cs.pa.jlogo115006;/*
+package it.unicam.cs.pa.jlogo115006;
+/*
  * JLogo: A simple java application for logo language interpretation
  * Copyright (c) 2022. Enrico Ulissi
  * Use of this source code is governed by an MIT-style license that can be found in the LICENSE file or at https://opensource.org/licenses/MIT.
@@ -17,11 +18,14 @@ import it.unicam.cs.pa.jlogo115006.screen.shapes.*;
 
 import java.util.*;
 
-public class SimpleDesigner implements Designer {
+/**
+ * This class has the responsibility to execute commands on a plane.
+ */
+public class SimpleDesigner<P extends Point> implements Designer {
 
-    private final Plane<Point> plane;
+    private final Plane<P> plane;
 
-    public SimpleDesigner(Plane<Point> plane) {
+    public SimpleDesigner(Plane<P> plane) {
         this.plane = Objects.requireNonNull(plane);
     }
 

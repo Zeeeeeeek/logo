@@ -7,6 +7,7 @@
 package it.unicam.cs.pa.jlogo115006;
 
 import it.unicam.cs.pa.jlogo115006.commands.*;
+import it.unicam.cs.pa.jlogo115006.screen.shapes.*;
 
 import java.util.*;
 
