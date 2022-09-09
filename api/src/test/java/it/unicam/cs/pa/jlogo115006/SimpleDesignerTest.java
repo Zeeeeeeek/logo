@@ -40,7 +40,6 @@ public class SimpleDesignerTest {
         assertEquals(1, countLineInPlane(plane));
         assertFalse(plane.getCursor().getPlot());
     }
-
     private List<Command> getSampleCommands() {
         return List.of(
                 new MoveCommand(List.of("FORWARD", "10")),

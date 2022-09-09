@@ -27,6 +27,12 @@ public class SimpleInstructionInterpreterTest {
         verifyExpectedPlane(plane);
     }
 
+    @Test
+    public void shouldThrowExceptionForUnrecognizedCommand() {
+        InstructionInterpreter interpreter = new SimpleInstructionInterpreter();
+        assertThrows(IllegalArgumentException.class, () -> interpreter.createCommands(List.of("a")));
+    }
+
     private void verifyExpectedPlane(Plane<SimplePoint> plane) {
         assertTrue(plane.getCursorPosition().equals(new SimplePoint(35, 25)));
         assertEquals(90, plane.getCursor().getDirection());
