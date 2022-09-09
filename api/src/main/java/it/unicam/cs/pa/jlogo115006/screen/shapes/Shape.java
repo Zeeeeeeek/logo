@@ -13,4 +13,10 @@ public interface Shape {
      * @return the colour of the shape.
      */
     Colour colour();
+
+    /**
+     * This method returns a string representation of the shape.
+     * @return a string representation of the shape.
+     */
+    String export();
 }

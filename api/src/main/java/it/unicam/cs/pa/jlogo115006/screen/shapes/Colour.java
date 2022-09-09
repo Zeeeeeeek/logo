@@ -33,4 +33,10 @@ public interface Colour {
      */
     int blue();
 
+    /**
+     * Returns a string representation of the colour.
+     * @return a string representation of the colour.
+     */
+    String export();
+
 }

@@ -75,6 +75,16 @@ public record RGBColour(int red, int green, int blue) implements Colour {
         return this.blue;
     }
 
+    /**
+     * Returns a string representation of the colour.
+     *
+     * @return a string representation of the colour.
+     */
+    @Override
+    public String export() {
+        return "rgb(" + this.red + "," + this.green + "," + this.blue + ")";
+    }
+
 
     /**
      * Returns a colour based on the values passed as strings

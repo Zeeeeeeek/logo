@@ -25,9 +25,9 @@ public class RepeatCommand implements Command {
      * @throws IllegalArgumentException if the number of times is not greater than 0
      * @throws NullPointerException if the commands list is null
      */
-    public RepeatCommand(int times, List<Command> commands) {
-        if(times <= 0) throw new IllegalArgumentException("Times in repeat command must be greater than 0");
-        this.times = times;
+    public RepeatCommand(String times, List<Command> commands) {
+        if(Integer.parseInt(times) <= 0) throw new IllegalArgumentException("Times in repeat command must be greater than 0");
+        this.times = Integer.parseInt(times);
         this.commands = Objects.requireNonNull(commands);
     }
 

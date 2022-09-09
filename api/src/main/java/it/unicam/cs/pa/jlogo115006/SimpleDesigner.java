@@ -33,7 +33,7 @@ public class SimpleDesigner implements Designer {
      */
     @Override
     public void execute(List<Command> commands) {
-        commands.forEach(command -> command.execute(plane));
+        commands.forEach(this::execute);
     }
 
     /**
@@ -43,7 +43,7 @@ public class SimpleDesigner implements Designer {
      */
     @Override
     public void execute(Command command) {
-
+        command.execute(plane);
     }
 
 }

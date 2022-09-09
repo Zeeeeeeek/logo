@@ -54,4 +54,14 @@ public record SimplePoint(double x, double y) implements Point {
     public double y() {
         return this.y;
     }
+
+    /**
+     * Returns a string representation of the point.
+     *
+     * @return a string representation of the point.
+     */
+    @Override
+    public String export() {
+        return "(" + this.x() + "; " + this.y() + ")";
+    }
 }

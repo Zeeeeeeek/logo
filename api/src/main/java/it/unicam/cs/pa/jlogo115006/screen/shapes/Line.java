@@ -45,4 +45,14 @@ public record Line(Point start, Point end, Colour colour, int size) implements S
     public Colour colour() {
         return this.colour;
     }
+
+    /**
+     * This method returns a string representation of the shape.
+     *
+     * @return a string representation of the shape.
+     */
+    @Override
+    public String export() {
+        return "Line start: " + start.export() + " end: " + end.export() + " colour: " + colour.export() + " Size: " + size;
+    }
 }

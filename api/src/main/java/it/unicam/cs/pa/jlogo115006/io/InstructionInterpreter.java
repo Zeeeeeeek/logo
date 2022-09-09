@@ -4,7 +4,7 @@
  * Use of this source code is governed by an MIT-style license that can be found in the LICENSE file or at https://opensource.org/licenses/MIT.
  */
 
-package it.unicam.cs.pa.jlogo115006;
+package it.unicam.cs.pa.jlogo115006.io;
 
 import it.unicam.cs.pa.jlogo115006.commands.*;
 

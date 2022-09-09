@@ -22,6 +22,11 @@ public interface Point {
      */
     double y();
 
+    /**
+     * Returns a string representation of the point.
+     * @return a string representation of the point.
+     */
+    String export();
 
     default boolean equals(Point other) {
         return areDoubleEquals(this.x(), other.x()) && areDoubleEquals(this.y(), other.y());

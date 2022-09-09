@@ -21,14 +21,14 @@ public class RepeatCommandTest {
     public void shouldRepeatCommands() {
         Plane<SimplePoint> plane = new SimplePlane(100,100);
         List<Command> commands = generateCommands();
-        Command repeat = new RepeatCommand(4, commands);
+        Command repeat = new RepeatCommand("4", commands);
         repeat.execute(plane);
         assertEquals(1, plane.getShapes().size());
     }
 
     @Test
     public void shouldThrowIllegalArgumentExceptionWithWrongArgument() {
-        assertThrows(IllegalArgumentException.class, () -> new RepeatCommand(0, List.of(new HomeCommand(), new HomeCommand())));
+        assertThrows(IllegalArgumentException.class, () -> new RepeatCommand("0", List.of(new HomeCommand(), new HomeCommand())));
     }
 
     private List<Command> generateCommands() {

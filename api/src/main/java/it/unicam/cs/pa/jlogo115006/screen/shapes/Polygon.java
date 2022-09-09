@@ -5,6 +5,7 @@
  */
 
 package it.unicam.cs.pa.jlogo115006.screen.shapes;
+
 import java.util.*;
 import java.util.logging.*;
 
@@ -15,7 +16,7 @@ public record Polygon(List<Shape> lines, Colour colour) implements Shape {
 
     private static final Logger logger = Logger.getLogger(Polygon.class.getName());
 
-    public Polygon{
+    public Polygon {
         Objects.requireNonNull(lines);
         Objects.requireNonNull(colour);
         logger.info("Polygon successfully created");
@@ -32,15 +33,30 @@ public record Polygon(List<Shape> lines, Colour colour) implements Shape {
     }
 
     /**
+     * This method returns a string representation of the shape.
+     *
+     * @return a string representation of the shape.
+     */
+    @Override
+    public String export() {
+        return "Polygon Colour: " + this.colour.export() + "\nLines"
+                + this.lines.stream()
+                                .map(Shape::export)
+                                .reduce("", (a, b) -> a + b + " ");
+    }
+
+    /**
      * Returns the number of lines in the polygon.
+     *
      * @return the number of lines in the polygon.
      */
-    public int getLinesNumber(){
+    public int getLinesNumber() {
         return this.lines.size();
     }
 
     /**
      * Returns the list of lines composing the polygon.
+     *
      * @return the list of lines composing the polygon.
      */
     @Override
