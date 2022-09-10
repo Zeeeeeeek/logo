@@ -35,6 +35,7 @@ public record Line(Point start, Point end, Colour colour, int size) implements S
             logger.severe("Tried to create a line with a negative size");
             throw new IllegalArgumentException("The size must be non-negative");
         }
+        logger.info("New Line has been drawn");
     }
 
     /**
@@ -48,9 +49,9 @@ public record Line(Point start, Point end, Colour colour, int size) implements S
     }
 
     /**
-     * This method returns a string representation of the shape.
+     * This method returns a string representation of this line.
      *
-     * @return a string representation of the shape.
+     * @return a string representation of this line.
      */
     @Override
     public String export() {

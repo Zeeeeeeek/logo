@@ -41,7 +41,7 @@ public class FileWriterExporterTest {
     private List<String> getExpectedOutput() {
         return List.of(
                 "Plane width 50.0 height 50.0 background colour: rgb(255,255,255)",
-                "Polygon Colour: rgb(255,255,255)",
+                "Polygon Lines: 4 Colour: rgb(255,255,255)",
                 "\tPolygon lines:",
                 "\t\tLine start: (25.0; 15.000000000000002) end: (25.0; 25.0) colour: rgb(0,0,0) Size: 1",
                 "\t\tLine start: (35.0; 15.0) end: (25.0; 15.000000000000002) colour: rgb(0,0,0) Size: 1",

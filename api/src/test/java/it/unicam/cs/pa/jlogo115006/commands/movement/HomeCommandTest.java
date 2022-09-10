@@ -7,7 +7,6 @@
 package it.unicam.cs.pa.jlogo115006.commands.movement;
 
 import it.unicam.cs.pa.jlogo115006.commands.*;
-import it.unicam.cs.pa.jlogo115006.commands.movement.*;
 import it.unicam.cs.pa.jlogo115006.screen.*;
 import it.unicam.cs.pa.jlogo115006.screen.shapes.*;
 import org.junit.jupiter.api.*;

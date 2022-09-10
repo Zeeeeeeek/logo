@@ -64,14 +64,14 @@ public class SimplePlaneTest {
     public void exceedingPlaneBoundsOnStraightMovements () {
         Plane<SimplePoint> plane = new SimplePlane(20, 20);
         plane.moveForward(15);
-        verifyXAndY(getCursorX(plane), getCursorY(plane), 20, 10);
+        verifyXAndY(getCursorX(plane), getCursorY(plane), 20, 10, 0.00000001);
         plane.moveBackward(30);
-        verifyXAndY(getCursorX(plane), getCursorY(plane), 0, 10);
+        verifyXAndY(getCursorX(plane), getCursorY(plane), 0, 10, 0.00000001);
         plane.rotateLeft(90);
         plane.moveForward(15);
-        verifyXAndY(getCursorX(plane), getCursorY(plane), 0, 20);
+        verifyXAndY(getCursorX(plane), getCursorY(plane), 0, 20, 0.00000001);
         plane.moveBackward(30);
-        verifyXAndY(getCursorX(plane), getCursorY(plane), 0, 0);
+        verifyXAndY(getCursorX(plane), getCursorY(plane), 0, 0, 0.00000001);
     }
 
 
@@ -80,15 +80,15 @@ public class SimplePlaneTest {
         Plane<SimplePoint> plane = new SimplePlane(20, 20);
         plane.rotateRight(45);
         plane.moveForward(30);
-        verifyXAndY(getCursorX(plane), getCursorY(plane), 20, 0);
+        verifyXAndY(getCursorX(plane), getCursorY(plane), 20, 0, 0.00000001);
         plane.moveBackward(60);
-        verifyXAndY(getCursorX(plane), getCursorY(plane), 0, 20);
+        verifyXAndY(getCursorX(plane), getCursorY(plane), 0, 20, 0.00000001);
         plane.goHome();
         plane.rotateRight(90);
         plane.moveForward(30);
-        verifyXAndY(getCursorX(plane), getCursorY(plane), 0, 0);
+        verifyXAndY(getCursorX(plane), getCursorY(plane), 0, 0, 0.00000001);
         plane.moveBackward(60);
-        verifyXAndY(getCursorX(plane), getCursorY(plane), 20, 20);
+        verifyXAndY(getCursorX(plane), getCursorY(plane), 20, 20, 0.00000001);
     }
 
     @Test
@@ -188,13 +188,13 @@ public class SimplePlaneTest {
         assertTrue(set.contains(size));
     }
 
-
-
-
-
     private void verifyXAndY(double actualX, double actualY, double expectedX, double expectedY) {
-        assertEquals(expectedX, actualX, 0.0000001);
-        assertEquals(expectedY, actualY, 0.0000001);//todo crea un metodo veify con delta da aggiungere per test con eccesso bordi
+        verifyXAndY(actualX, actualY, expectedX, expectedY, 0);
+    }
+
+    private void verifyXAndY(double actualX, double actualY, double expectedX, double expectedY, double delta) {
+        assertEquals(expectedX, actualX, delta);
+        assertEquals(expectedY, actualY, delta);
     }
 
     private double getCursorX(Plane<SimplePoint> plane) {
