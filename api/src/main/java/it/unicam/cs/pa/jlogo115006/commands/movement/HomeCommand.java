@@ -14,13 +14,14 @@ import it.unicam.cs.pa.jlogo115006.screen.shapes.*;
  * Represents a command that move the cursor to the home position.
  */
 public class HomeCommand implements Command {
+
     /**
      * Executes the command with its arguments in the given plane.
      *
      * @param plane the plane on which the command is executed.
      */
     @Override
-    public <P extends Point> void execute(Plane<P> plane) {
+    public void execute(Plane<? extends Point> plane) {
         plane.goHome();
     }
 }

@@ -4,19 +4,18 @@
  * Use of this source code is governed by an MIT-style license that can be found in the LICENSE file or at https://opensource.org/licenses/MIT.
  */
 
-package it.unicam.cs.pa.jlogo115006.screen.shapes;/**
+package it.unicam.cs.pa.jlogo115006.screen.shapes;
+
+import it.unicam.cs.pa.jlogo115006.io.output.*;
+
+/**
  * Represents a shape drawn by the cursor on a plane.
  */
-public interface Shape {
+public interface Shape extends isExportable {
     /**
      * Return the colour of the shape.
      * @return the colour of the shape.
      */
     Colour colour();
 
-    /**
-     * This method returns a string representation of the shape.
-     * @return a string representation of the shape.
-     */
-    String export();
 }

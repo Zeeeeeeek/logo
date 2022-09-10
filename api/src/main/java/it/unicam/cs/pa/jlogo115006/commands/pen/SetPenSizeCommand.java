@@ -33,7 +33,7 @@ public class SetPenSizeCommand implements Command {
      * @throws IllegalArgumentException if the size is less than 1.
      */
     @Override
-    public <P extends Point> void execute(Plane<P> plane) {
+    public void execute(Plane<? extends Point> plane) {
         plane.setPenSize(size);
     }
 }

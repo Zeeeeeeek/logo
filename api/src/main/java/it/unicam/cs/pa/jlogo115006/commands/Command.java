@@ -17,6 +17,6 @@ public interface Command {
      * Executes the command with its arguments in the given plane.
      * @param plane the plane on which the command is executed.
      */
-    <P extends Point> void  execute(Plane<P> plane);
+    void  execute(Plane<? extends Point> plane);
 
 }

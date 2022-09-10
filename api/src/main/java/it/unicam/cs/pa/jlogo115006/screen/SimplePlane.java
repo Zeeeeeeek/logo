@@ -10,6 +10,7 @@ import it.unicam.cs.pa.jlogo115006.screen.shapes.*;
 
 import java.util.*;
 import java.util.logging.*;
+import java.util.stream.*;
 
 /**
  * A two-dimensional plane that handles the shapes and the cursor
@@ -37,16 +38,17 @@ public class SimplePlane implements Plane<SimplePoint> {
      */
     public SimplePlane(double width, double height) {
         this(new RGBColour(255, 255, 255), width, height,
-                new SimpleCursor(), new SimplePoint(width/2, height/2));
+                new SimpleCursor(), new SimplePoint(width / 2, height / 2));
     }
 
     /**
      * Creates a new plane based on the specified parameters.
+     *
      * @param backgroundColour the screen background colour
-     * @param width the screen width
-     * @param height the screen height
-     * @param cursor the cursor used in the plane
-     * @param cursorPosition the cursor position
+     * @param width            the screen width
+     * @param height           the screen height
+     * @param cursor           the cursor used in the plane
+     * @param cursorPosition   the cursor position
      */
     public SimplePlane(Colour backgroundColour, double width, double height, Cursor cursor, SimplePoint cursorPosition) {
         this.shapes = new ArrayList<>();
@@ -64,15 +66,15 @@ public class SimplePlane implements Plane<SimplePoint> {
         return value;
     }
 
-   /**
-    * Returns the coordinates of the point where the cursor is.
-    *
-    * @return the coordinates of the point where the cursor is.
-    */
-   @Override
-   public SimplePoint getCursorPosition() {
-       return this.cursorPosition;
-   }
+    /**
+     * Returns the coordinates of the point where the cursor is.
+     *
+     * @return the coordinates of the point where the cursor is.
+     */
+    @Override
+    public SimplePoint getCursorPosition() {
+        return this.cursorPosition;
+    }
 
     /**
      * Rotates the cursor to the left of the given angle.
@@ -101,6 +103,7 @@ public class SimplePlane implements Plane<SimplePoint> {
 
     /**
      * Returns the cursor used in the plane.
+     *
      * @return the cursor used in the plane.
      */
     @Override
@@ -130,6 +133,7 @@ public class SimplePlane implements Plane<SimplePoint> {
 
     /**
      * Utility method to move the cursor of the specified distance.
+     *
      * @param distance the distance of the movement.
      */
     private void move(double distance) {
@@ -142,8 +146,9 @@ public class SimplePlane implements Plane<SimplePoint> {
 
     /**
      * Creates a new Line between the specified points and adds it to the list of shapes.
+     *
      * @param start the start point of the line
-     * @param end the end point of the line
+     * @param end   the end point of the line
      */
     private void addNewLineFromPoints(Point start, Point end) {
         Line line = new Line(start, end, cursor.getLineColour(), cursor.getPenSize());
@@ -168,11 +173,12 @@ public class SimplePlane implements Plane<SimplePoint> {
     }
 
     private boolean isClosedPolygon(int adjacentPointsCounter) {
-        return areAdjacentLines((Line) shapes.get(shapes.size()-1-adjacentPointsCounter), (Line) shapes.get(shapes.size()-1));
+        return areAdjacentLines((Line) shapes.get(shapes.size() - 1 - adjacentPointsCounter), (Line) shapes.get(shapes.size() - 1));
     }
 
     /**
      * Remove and return the specified number of lines from the shapes list.
+     *
      * @param adjacentLineIndex the number of lines to remove
      * @return the list of lines removed
      */
@@ -186,7 +192,8 @@ public class SimplePlane implements Plane<SimplePoint> {
 
     /**
      * Verifies if the two specified lines are adjacent.
-     * @param first the first line
+     *
+     * @param first  the first line
      * @param second the second line
      * @return true if the two lines are adjacent, false otherwise
      */
@@ -197,7 +204,8 @@ public class SimplePlane implements Plane<SimplePoint> {
     /**
      * Return the next cursor's position based on the specified distance. If the movement goes out of the plane, the new
      * position ends in plane's border.
-     * @param start the start point
+     *
+     * @param start    the start point
      * @param distance the distance of the movement
      * @return the next cursor's position
      */
@@ -213,6 +221,7 @@ public class SimplePlane implements Plane<SimplePoint> {
 
     /**
      * Return the sine of the specified angle represented in degrees.
+     *
      * @param degrees the angle
      * @return the sine of the specified angle
      */
@@ -222,6 +231,7 @@ public class SimplePlane implements Plane<SimplePoint> {
 
     /**
      * Return the cosine of the specified angle represented in degrees.
+     *
      * @param degrees the angle
      * @return the cosine of the specified angle
      */
@@ -328,7 +338,6 @@ public class SimplePlane implements Plane<SimplePoint> {
      * Sets the pen size.
      *
      * @param size the pen size.
-     *
      * @throws IllegalArgumentException if the size is less than 1
      */
     @Override
@@ -354,5 +363,14 @@ public class SimplePlane implements Plane<SimplePoint> {
     @Override
     public double getHeight() {
         return height;
+    }
+
+    @Override
+    public String export() {
+        return "Plane width " + width + " height " + height + " background colour: "
+                + backgroundColour.export() + "\n" +
+                this.shapes.stream()
+                        .map(Shape::export)
+                        .collect(Collectors.joining("\n"));
     }
 }

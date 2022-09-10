@@ -39,7 +39,7 @@ public class RotateCommand implements Command {
      * @param plane the plane on which the command is executed.
      */
     @Override
-    public <P extends Point> void execute(Plane<P> plane) {
+    public void execute(Plane<? extends Point> plane) {
         if (orientation == RotateOrientation.LEFT) {
             plane.rotateLeft(angle);
         } else {

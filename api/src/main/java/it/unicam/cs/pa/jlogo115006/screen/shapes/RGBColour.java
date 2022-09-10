@@ -6,8 +6,9 @@
 
 package it.unicam.cs.pa.jlogo115006.screen.shapes;
 
-import java.util.*;
-import java.util.logging.*;
+
+import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * This class represents a simple RGB implementation.

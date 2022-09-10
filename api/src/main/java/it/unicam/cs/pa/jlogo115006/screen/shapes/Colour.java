@@ -6,12 +6,13 @@
 
 package it.unicam.cs.pa.jlogo115006.screen.shapes;
 
-import java.util.*;
+
+import it.unicam.cs.pa.jlogo115006.io.output.*;
 
 /**
  * Represents a color in the logo language.
  */
-public interface Colour {
+public interface Colour extends isExportable {
     /**
      * Returns the red component of the color.
      *
@@ -32,11 +33,5 @@ public interface Colour {
      * @return the blue component of the color.
      */
     int blue();
-
-    /**
-     * Returns a string representation of the colour.
-     * @return a string representation of the colour.
-     */
-    String export();
 
 }

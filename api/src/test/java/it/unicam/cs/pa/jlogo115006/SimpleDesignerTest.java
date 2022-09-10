@@ -21,7 +21,7 @@ public class SimpleDesignerTest {
     @Test
     public void shouldRunSingleCommands() {
         Plane<SimplePoint> plane = new SimplePlane(50, 50);
-        Designer designer = new SimpleDesigner<>(plane);
+        Designer designer = new SimpleDesigner(plane);
         designer.execute(new MoveCommand(List.of("FORWARD", "10")));
         assertEquals(new SimplePoint(35, 25), plane.getCursorPosition());
         designer.execute(new RotateCommand(List.of("LEFT", "90")));
@@ -31,7 +31,7 @@ public class SimpleDesignerTest {
     @Test
     public void shouldRunListOfCommands() {
         Plane<SimplePoint> plane = new SimplePlane(50, 50);
-        Designer designer = new SimpleDesigner<>(plane);
+        Designer designer = new SimpleDesigner(plane);
         designer.execute(getSampleCommands());
         assertTrue(new SimplePoint(25, 15).equals(plane.getCursorPosition()));
         assertEquals(270, plane.getCursor().getDirection());

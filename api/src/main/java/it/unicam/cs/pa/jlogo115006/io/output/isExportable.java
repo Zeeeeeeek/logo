@@ -6,17 +6,14 @@
 
 package it.unicam.cs.pa.jlogo115006.io.output;
 
-import it.unicam.cs.pa.jlogo115006.screen.shapes.*;
-
-import java.util.*;
-
 /**
- * This class has the responsibility to export shapes in a specific format.
+ * This class guarantees the exportability of a certain element
  */
-public interface ShapeExporter {
+
+public interface isExportable {
     /**
-     * Prints a shape list
-     * @param shapes the list of shapes to print
+     * Returns a string representation of the object.
+     * @return a string representation of the object.
      */
-    void export(List<Shape> shapes);
+    String export();
 }

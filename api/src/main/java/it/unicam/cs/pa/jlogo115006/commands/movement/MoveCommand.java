@@ -37,7 +37,7 @@ public class MoveCommand implements Command {
      * @param plane the plane on which the command is executed.
      */
     @Override
-    public <P extends Point> void execute(Plane<P> plane) {
+    public void execute(Plane<? extends Point> plane) {
         if (direction == MovementDirection.FORWARD) {
             plane.moveForward(distance);
         } else {

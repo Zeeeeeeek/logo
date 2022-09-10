@@ -6,7 +6,7 @@
 
 package it.unicam.cs.pa.jlogo115006.screen.shapes;
 
-import java.util.logging.*;
+import java.util.logging.Logger;
 
 /**
  * Represents a simple point ina a plane

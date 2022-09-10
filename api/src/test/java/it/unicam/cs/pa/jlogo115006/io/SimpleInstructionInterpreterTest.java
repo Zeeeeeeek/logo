@@ -21,7 +21,7 @@ public class SimpleInstructionInterpreterTest {
     public void shouldCreateCommands() {
         Plane<SimplePoint> plane = new SimplePlane(50, 50);
         InstructionInterpreter interpreter = new SimpleInstructionInterpreter();
-        Designer designer = new SimpleDesigner<>(plane);
+        Designer designer = new SimpleDesigner(plane);
         List<Command> commands = interpreter.createCommands(getSampleInstructionAsList());
         designer.execute(commands);
         verifyExpectedPlane(plane);

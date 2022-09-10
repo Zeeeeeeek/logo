@@ -21,11 +21,11 @@ import java.util.*;
 /**
  * This class has the responsibility to execute commands on a plane.
  */
-public class SimpleDesigner<P extends Point> implements Designer {
+public class SimpleDesigner implements Designer {
 
-    private final Plane<P> plane;
+    private final Plane<? extends Point> plane;
 
-    public SimpleDesigner(Plane<P> plane) {
+    public SimpleDesigner(Plane<? extends Point> plane) {
         this.plane = Objects.requireNonNull(plane);
     }
 

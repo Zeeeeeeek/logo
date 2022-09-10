@@ -5,6 +5,7 @@
  */
 
 package it.unicam.cs.pa.jlogo115006.screen;
+import it.unicam.cs.pa.jlogo115006.io.output.*;
 import it.unicam.cs.pa.jlogo115006.screen.shapes.*;
 
 import java.util.*;
@@ -13,7 +14,7 @@ import java.util.*;
  * It represents a plane whose points are identified by coordinates. Manages the shapes drawn on it and the cursor.
  *
  */
-public interface Plane<P extends Point> {
+public interface Plane<P extends Point> extends isExportable {
 
     /**
      * Returns the coordinates of the point where the cursor is.
