@@ -13,6 +13,7 @@ import it.unicam.cs.pa.jlogo115006.screen.*;
 import it.unicam.cs.pa.jlogo115006.screen.shapes.*;
 
 import java.io.*;
+import java.nio.file.*;
 import java.util.*;
 
 /**
@@ -36,6 +37,15 @@ public class Controller {
         this(
                 new SimpleInstructionInterpreter(),
                 new FromFileInstructionReader(inputPath),
+                new FileWriterExporter(outputPath),
+                new SimpleDesigner(plane)
+        );
+    }
+
+    public Controller(Plane<? extends Point> plane, FromConsoleInstructionReader reader, String outputPath) throws IOException {
+        this(
+                new SimpleInstructionInterpreter(),
+                reader,
                 new FileWriterExporter(outputPath),
                 new SimpleDesigner(plane)
         );

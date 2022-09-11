@@ -6,16 +6,45 @@
 
 package it.unicam.cs.pa.jlogo115006;
 
+import it.unicam.cs.pa.jlogo115006.io.input.*;
 import it.unicam.cs.pa.jlogo115006.screen.*;
 
 import java.io.*;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        Controller controller = new Controller(new SimplePlane(100, 100),
-                "api/src/main/java/it/unicam/cs/pa/jlogo115006/input.txt",
-                "api/src/main/java/it/unicam/cs/pa/jlogo115006/output.txt");
-        controller.run();
-        controller.export();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Welcome to JLogo!\nInsert plane width:");
+        double planeWidth = scanner.nextDouble();
+        System.out.println("Insert plane height:");
+        double planeHeight = scanner.nextDouble();
+        System.out.println("You wish to run the program in console mode? (y/n)");
+        switch (scanner.next().toUpperCase()) {
+            case "Y" -> {
+                System.out.println("Please insert output file path:");
+                String outputPath = scanner.next();
+                Controller controller = new Controller(new SimplePlane(planeWidth, planeHeight), new FromConsoleInstructionReader(scanner), outputPath);
+                System.out.println("You can now insert your instructions, one per line. When you are done, type \"exit\".");
+                while (true) {
+                    System.out.println("Insert instruction:");
+                    if (scanner.nextLine().equals("exit")) break;
+                    controller.runSingleInstruction();
+                }
+                controller.export();
+            }
+            case "N" -> {
+                System.out.println("Insert input path:");
+                String inputPath = scanner.next();
+                System.out.println("Insert output path:");
+                String outputPath = scanner.next();
+                Controller controller = new Controller(new SimplePlane(planeWidth, planeHeight), inputPath, outputPath);
+                controller.run();
+                controller.export();
+            }
+            default -> throw new IllegalArgumentException("Invalid input");
+        }
+        System.out.println("Done!");
+        scanner.close();
     }
 }

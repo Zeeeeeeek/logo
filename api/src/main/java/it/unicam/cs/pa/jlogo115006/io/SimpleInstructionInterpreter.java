@@ -84,6 +84,7 @@ public class SimpleInstructionInterpreter implements InstructionInterpreter {
         if (!currentString.isEmpty()) commands.add(createCommand(currentString.toString()));
         return commands;
     }
+
     private int getLastIndexOfInnerRepeat(List<String> instructions) {
         int lastIndex = instructions.size() -2; //ignore the last ]
         while (lastIndex > 0) {

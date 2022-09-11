@@ -1,2 +1,0 @@
-Plane width 100.0 height 100.0 background colour: rgb(255,255,255)
-Line start: (50.0; 50.0) end: (60.0; 50.0) colour: rgb(0,0,0) Size: 1
