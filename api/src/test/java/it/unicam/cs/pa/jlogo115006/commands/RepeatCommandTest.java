@@ -34,4 +34,14 @@ public class RepeatCommandTest {
     private List<Command> generateCommands() {
         return List.of(new MoveCommand(List.of("Forward", "10")), new RotateCommand(List.of("Left", "90")));
     }
+
+    @Test
+    public void multipleRepeatCommand() {
+        Plane<SimplePoint> plane = new SimplePlane(100, 100);
+        List<Command> commands = List.of(new MoveCommand(List.of("Forward", "5")));
+        Command toBeRepeated = new RepeatCommand("2", commands);
+        Command repeat = new RepeatCommand("2", List.of(toBeRepeated));
+        repeat.execute(plane);
+        assertEquals(70, plane.getCursorPosition().x());
+    }
 }

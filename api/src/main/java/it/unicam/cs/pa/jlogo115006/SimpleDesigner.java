@@ -50,4 +50,14 @@ public class SimpleDesigner implements Designer {
         command.execute(plane);
     }
 
+    /**
+     * Returns the plane on which the designer is working.
+     *
+     * @return the plane on which the designer is working.
+     */
+    @Override
+    public Plane<? extends Point> getPlane() {
+        return this.plane;
+    }
+
 }

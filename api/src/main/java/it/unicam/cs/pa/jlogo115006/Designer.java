@@ -7,6 +7,7 @@
 package it.unicam.cs.pa.jlogo115006;
 
 import it.unicam.cs.pa.jlogo115006.commands.*;
+import it.unicam.cs.pa.jlogo115006.screen.*;
 import it.unicam.cs.pa.jlogo115006.screen.shapes.*;
 
 import java.util.*;
@@ -32,5 +33,11 @@ public interface Designer {
      * @param command the command to be executed.
      */
     void execute(Command command);
+
+    /**
+     * Returns the plane on which the designer is working.
+     * @return the plane on which the designer is working.
+     */
+    Plane<? extends Point> getPlane();
 
 }

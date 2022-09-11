@@ -6,6 +6,11 @@
 
 package it.unicam.cs.pa.jlogo115006.io.input;
 
+import it.unicam.cs.pa.jlogo115006.*;
+import it.unicam.cs.pa.jlogo115006.commands.*;
+import it.unicam.cs.pa.jlogo115006.io.*;
+import it.unicam.cs.pa.jlogo115006.screen.*;
+import it.unicam.cs.pa.jlogo115006.screen.shapes.*;
 import org.junit.jupiter.api.*;
 
 import java.io.*;
@@ -29,5 +34,16 @@ public class FromFileInstructionReaderTest {
         List<String> expected = List.of("FORWARD 10", "LEFT 30", "PENUP", "SETPENCOLOR 25 25 25");
         List<String> actual = reader.readLines();
         assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldCreateMultipleRepeatCommands() throws FileNotFoundException {
+        FromFileInstructionReader reader = new FromFileInstructionReader("src/test/java/it/unicam/cs/pa/jlogo115006/io/input/inputTest2.txt");
+        InstructionInterpreter interpreter = new SimpleInstructionInterpreter();
+        Plane<SimplePoint> plane = new SimplePlane(100, 100);
+        Designer designer = new SimpleDesigner(plane);
+        List<Command> cmds = interpreter.createCommands(reader.readLines());
+        designer.execute(cmds);
+        assertEquals(66, plane.getCursorPosition().x());
     }
 }

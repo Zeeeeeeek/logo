@@ -13,7 +13,7 @@ import java.io.*;
 import java.util.logging.Logger;
 
 /**
- * This class will export shapes and write them in a text file.
+ * This class will export a plane in a text file.
  */
 public class FileWriterExporter implements Exporter<Plane<? extends Point>> {
     private final static Logger logger = Logger.getLogger(FileWriterExporter.class.getName());

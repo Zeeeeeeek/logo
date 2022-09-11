@@ -6,7 +6,6 @@
 
 package it.unicam.cs.pa.jlogo115006.io;
 
-import it.unicam.cs.pa.jlogo115006.*;
 import it.unicam.cs.pa.jlogo115006.commands.*;
 import it.unicam.cs.pa.jlogo115006.screen.*;
 import it.unicam.cs.pa.jlogo115006.screen.shapes.*;
@@ -19,12 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class SimpleInstructionInterpreterTest {
     @Test
     public void shouldCreateCommands() {
-        Plane<SimplePoint> plane = new SimplePlane(50, 50);
-        InstructionInterpreter interpreter = new SimpleInstructionInterpreter();
-        Designer designer = new SimpleDesigner(plane);
-        List<Command> commands = interpreter.createCommands(getSampleInstructionAsList());
-        designer.execute(commands);
-        verifyExpectedPlane(plane);
+
     }
 
     @Test
@@ -40,12 +34,12 @@ public class SimpleInstructionInterpreterTest {
         assertEquals(1, plane.getShapes().size());
     }
 
-
-    private List<String> getSampleInstructionAsList() {
-        return Arrays.asList(getSampleInstruction().split("\\R"));
+    @Test
+    public void test() {
+        Plane<SimplePoint> plane = new SimplePlane(500, 500);
+        InstructionInterpreter interpreter = new SimpleInstructionInterpreter();
+        Command cmd = interpreter.createCommand("REPEAT 4 [ REPEAT 2 [ FORWARD 10 ] RIGHT 90 ]");
+        cmd.execute(plane);
     }
 
-    private String getSampleInstruction() {
-        return "forward 10\nleft 90\npenup\nsetpencolor 25 25 25";
-    }
 }
