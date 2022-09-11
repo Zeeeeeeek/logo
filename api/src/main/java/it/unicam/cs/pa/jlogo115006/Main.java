@@ -14,16 +14,18 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+        String defaultPath = "api/src/main/java/it/unicam/cs/pa/jlogo115006/textFiles/";
         Scanner scanner = new Scanner(System.in);
         System.out.println("Welcome to JLogo!\nInsert plane width:");
         double planeWidth = scanner.nextDouble();
         System.out.println("Insert plane height:");
         double planeHeight = scanner.nextDouble();
         System.out.println("You wish to run the program in console mode? (y/n)");
-        switch (scanner.next().toUpperCase()) {
-            case "Y" -> {
+        switch (scanner.next()) {
+            case "Y","y" -> {
                 System.out.println("Please insert output file path:");
                 String outputPath = scanner.next();
+                if(outputPath.equals("")) outputPath = defaultPath + "output.txt";
                 Controller controller = new Controller(new SimplePlane(planeWidth, planeHeight), new FromConsoleInstructionReader(scanner), outputPath);
                 System.out.println("You can now insert your instructions, one per line. When you are done, type \"exit\".");
                 while (true) {
@@ -33,11 +35,13 @@ public class Main {
                 }
                 controller.export();
             }
-            case "N" -> {
-                System.out.println("Insert input path:");
+            case "N","n" -> {
+                System.out.println("Insert input path or press ENTER to use default path:");
                 String inputPath = scanner.next();
-                System.out.println("Insert output path:");
+                if(inputPath.equals("")) inputPath = defaultPath + "input.txt";
+                System.out.println("Insert output path or press ENTER to use default path:");
                 String outputPath = scanner.next();
+                if(outputPath.equals("")) outputPath = defaultPath + "output.txt";
                 Controller controller = new Controller(new SimplePlane(planeWidth, planeHeight), inputPath, outputPath);
                 controller.run();
                 controller.export();
