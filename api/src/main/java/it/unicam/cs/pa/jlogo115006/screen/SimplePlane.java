@@ -34,7 +34,12 @@ public class SimplePlane implements Plane<SimplePoint> {
     /**
      * Set of all handlers that will be called when a new shape is added to the plane.
      */
-    private final Set<Consumer<Shape>> handlers;
+    private final Set<Consumer<Shape>> shapeHandlers;
+
+    /**
+     * Set of all handlers that will be called when the colour of the plane is changed.
+     */
+    private final Set<Consumer<Colour>> backgroundColourHandlers;
 
     /**
      * Creates a new plane with the given width and height, with default background colour and default cursor.
@@ -64,7 +69,8 @@ public class SimplePlane implements Plane<SimplePoint> {
         this.cursor = Objects.requireNonNull(cursor);
         this.backgroundColour = Objects.requireNonNull(backgroundColour);
         this.cursorPosition = Objects.requireNonNull(cursorPosition);
-        this.handlers = new HashSet<>();
+        this.shapeHandlers = new HashSet<>();
+        this.backgroundColourHandlers = new HashSet<>();
         logger.info("New simple plane successfully created");
     }
 
@@ -160,7 +166,7 @@ public class SimplePlane implements Plane<SimplePoint> {
     private void addNewLineFromPoints(Point start, Point end) {
         Line line = new Line(start, end, cursor.getLineColour(), cursor.getPenSize());
         shapes.add(line);
-        callHandlersForShape(line);
+        callHandlersForNewShapeAdded(line);
         checkForNewPolygon();
     }
 
@@ -178,7 +184,7 @@ public class SimplePlane implements Plane<SimplePoint> {
         if (adjacentPointsCounter >= 2 && isClosedPolygon(adjacentPointsCounter)) {
             Polygon polygon = new Polygon(retrieveAndRemoveLines(adjacentPointsCounter), cursor.getShapeColour());
             shapes.add(polygon);
-            callHandlersForShape(polygon);
+            callHandlersForNewShapeAdded(polygon);
         }
     }
 
@@ -304,6 +310,7 @@ public class SimplePlane implements Plane<SimplePoint> {
     @Override
     public void setBackgroundColour(Colour colour) {
         this.backgroundColour = Objects.requireNonNull(colour);
+        callHandlersForBackgroundColourChanged(colour);
     }
 
     /**
@@ -379,34 +386,54 @@ public class SimplePlane implements Plane<SimplePoint> {
      * Adds a handler for the event fired when a new shape is added to the plane.
      *
      * @param handler the handler to add.
-     *
      * @throws NullPointerException if the handler is null.
      */
     @Override
     public void addShapeAddedHandler(Consumer<Shape> handler) {
-        handlers.add(Objects.requireNonNull(handler));
+        shapeHandlers.add(Objects.requireNonNull(handler));
     }
 
     /**
      * Removes a handler for the event fired when a new shape is added to the plane.
      *
      * @param handler the handler to remove.
-     *
      * @throws NullPointerException if the handler is null
      */
     @Override
     public void removeShapeAddedHandler(Consumer<Shape> handler) {
-        handlers.remove(Objects.requireNonNull(handler));
+        shapeHandlers.remove(Objects.requireNonNull(handler));
     }
 
     /**
      * Calls all the handlers for the event fired when a new shape is added to the plane.
+     *
      * @param shape the shape added to the plane.
      */
-    private void callHandlersForShape(Shape shape) {
-        for (Consumer<Shape> handler : handlers) {
-            handler.accept(shape);
-        }
+    private void callHandlersForNewShapeAdded(Shape shape) {
+        shapeHandlers.forEach(handler -> handler.accept(shape));
+    }
+
+    /**
+     * Adds a handler for the event fired when the background color is changed.
+     */
+    @Override
+    public void addBackgroundColourChangedHandler(Consumer<Colour> handler) {
+        backgroundColourHandlers.add(Objects.requireNonNull(handler));
+    }
+
+    /**
+     * Removes a handler for the event fired when the background color is changed.
+     */
+    @Override
+    public void removeBackgroundColourChangedHandler(Consumer<Colour> handler) {
+        backgroundColourHandlers.remove(Objects.requireNonNull(handler));
+    }
+
+    /**
+     * Calls all the handlers for the event fired when the background color is changed.
+     */
+    private void callHandlersForBackgroundColourChanged(Colour colour) {
+        backgroundColourHandlers.forEach(handler -> handler.accept(colour));
     }
 
     @Override
