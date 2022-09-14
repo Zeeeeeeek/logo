@@ -5,17 +5,18 @@
  */
 
 package it.unicam.cs.pa.jlogo115006.screen;
+
 import it.unicam.cs.pa.jlogo115006.io.output.*;
 import it.unicam.cs.pa.jlogo115006.screen.shapes.*;
 
 import java.util.*;
+import java.util.function.*;
 
 /**
  * It represents a plane whose points are identified by coordinates. Manages the shapes drawn on it and the cursor.
  *
  */
 public interface Plane<P extends Point> extends isExportable {
-
     /**
      * Returns the coordinates of the point where the cursor is.
      *
@@ -130,4 +131,15 @@ public interface Plane<P extends Point> extends isExportable {
      * @return the plane's height.
      */
     double getHeight();
+
+    /**
+     * Adds a handler for the event fired when a new shape is added to the plane.
+     */
+    void addShapeAddedHandler(Consumer<Shape> handler);
+
+    /**
+     * Removes a handler for the event fired when a new shape is added to the plane.
+     */
+    void removeShapeAddedHandler(Consumer<Shape> handler);
+
 }

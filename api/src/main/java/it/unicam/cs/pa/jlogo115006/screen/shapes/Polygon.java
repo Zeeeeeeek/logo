@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 /**
  * Represents a closed area drawn in a plane.
  */
-public record Polygon(List<Shape> lines, Colour colour) implements Shape {
+public record Polygon(List<Line> lines, Colour colour) implements Shape {
 
     private static final Logger logger = Logger.getLogger(Polygon.class.getName());
 
@@ -60,7 +60,7 @@ public record Polygon(List<Shape> lines, Colour colour) implements Shape {
      * @return the list of lines composing the polygon.
      */
     @Override
-    public List<Shape> lines() {
+    public List<Line> lines() {
         return lines;
     }
 }

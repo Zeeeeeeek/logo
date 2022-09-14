@@ -9,6 +9,7 @@ package it.unicam.cs.pa.jlogo115006.screen;
 import it.unicam.cs.pa.jlogo115006.screen.shapes.*;
 
 import java.util.*;
+import java.util.function.*;
 import java.util.logging.Logger;
 import java.util.stream.*;
 
@@ -29,6 +30,11 @@ public class SimplePlane implements Plane<SimplePoint> {
 
     private final double width;
     private final double height;
+
+    /**
+     * Set of all handlers that will be called when a new shape is added to the plane.
+     */
+    private final Set<Consumer<Shape>> handlers;
 
     /**
      * Creates a new plane with the given width and height, with default background colour and default cursor.
@@ -58,6 +64,7 @@ public class SimplePlane implements Plane<SimplePoint> {
         this.cursor = Objects.requireNonNull(cursor);
         this.backgroundColour = Objects.requireNonNull(backgroundColour);
         this.cursorPosition = Objects.requireNonNull(cursorPosition);
+        this.handlers = new HashSet<>();
         logger.info("New simple plane successfully created");
     }
 
@@ -153,6 +160,7 @@ public class SimplePlane implements Plane<SimplePoint> {
     private void addNewLineFromPoints(Point start, Point end) {
         Line line = new Line(start, end, cursor.getLineColour(), cursor.getPenSize());
         shapes.add(line);
+        callHandlersForShape(line);
         checkForNewPolygon();
     }
 
@@ -168,7 +176,9 @@ public class SimplePlane implements Plane<SimplePoint> {
             adjacentPointsCounter++;
         }
         if (adjacentPointsCounter >= 2 && isClosedPolygon(adjacentPointsCounter)) {
-            shapes.add(new Polygon(retrieveLines(adjacentPointsCounter), cursor.getShapeColour()));
+            Polygon polygon = new Polygon(retrieveAndRemoveLines(adjacentPointsCounter), cursor.getShapeColour());
+            shapes.add(polygon);
+            callHandlersForShape(polygon);
         }
     }
 
@@ -182,10 +192,10 @@ public class SimplePlane implements Plane<SimplePoint> {
      * @param adjacentLineIndex the number of lines to remove
      * @return the list of lines removed
      */
-    private List<Shape> retrieveLines(int adjacentLineIndex) {
-        List<Shape> newPolygonLines = new ArrayList<>();
+    private List<Line> retrieveAndRemoveLines(int adjacentLineIndex) {
+        List<Line> newPolygonLines = new ArrayList<>();
         for (int i = adjacentLineIndex; i >= 0; i--) {
-            newPolygonLines.add(shapes.remove(i));
+            newPolygonLines.add((Line) shapes.remove(i));
         }
         return newPolygonLines;
     }
@@ -363,6 +373,40 @@ public class SimplePlane implements Plane<SimplePoint> {
     @Override
     public double getHeight() {
         return height;
+    }
+
+    /**
+     * Adds a handler for the event fired when a new shape is added to the plane.
+     *
+     * @param handler the handler to add.
+     *
+     * @throws NullPointerException if the handler is null.
+     */
+    @Override
+    public void addShapeAddedHandler(Consumer<Shape> handler) {
+        handlers.add(Objects.requireNonNull(handler));
+    }
+
+    /**
+     * Removes a handler for the event fired when a new shape is added to the plane.
+     *
+     * @param handler the handler to remove.
+     *
+     * @throws NullPointerException if the handler is null
+     */
+    @Override
+    public void removeShapeAddedHandler(Consumer<Shape> handler) {
+        handlers.remove(Objects.requireNonNull(handler));
+    }
+
+    /**
+     * Calls all the handlers for the event fired when a new shape is added to the plane.
+     * @param shape the shape added to the plane.
+     */
+    private void callHandlersForShape(Shape shape) {
+        for (Consumer<Shape> handler : handlers) {
+            handler.accept(shape);
+        }
     }
 
     @Override

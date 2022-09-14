@@ -85,4 +85,11 @@ public class Controller {
     public void export() {
         exporter.export(designer.getPlane());
     }
+
+    /**
+     * Returns the plane on which the designer is working.
+     */
+    public Plane<? extends Point> getPlane() {
+        return designer.getPlane();
+    }
 }
