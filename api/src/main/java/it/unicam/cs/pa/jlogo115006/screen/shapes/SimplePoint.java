@@ -62,6 +62,6 @@ public record SimplePoint(double x, double y) implements Point {
      */
     @Override
     public String export() {
-        return "(" + this.x() + "; " + this.y() + ")";
+        return this.x() + " " + this.y();
     }
 }

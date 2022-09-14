@@ -83,7 +83,7 @@ public record RGBColour(int red, int green, int blue) implements Colour {
      */
     @Override
     public String export() {
-        return "rgb(" + this.red + "," + this.green + "," + this.blue + ")";
+        return this.red + " " + this.green + " " + this.blue;
     }
 
 

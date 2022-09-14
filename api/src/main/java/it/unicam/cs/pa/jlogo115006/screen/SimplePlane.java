@@ -411,7 +411,7 @@ public class SimplePlane implements Plane<SimplePoint> {
 
     @Override
     public String export() {
-        return "Plane width " + width + " height " + height + " background colour: "
+        return "SIZE " + width + " " + height + " "
                 + backgroundColour.export() + "\n" +
                 this.shapes.stream()
                         .map(Shape::export)

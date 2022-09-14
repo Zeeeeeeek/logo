@@ -55,6 +55,6 @@ public record Line(Point start, Point end, Colour colour, int size) implements S
      */
     @Override
     public String export() {
-        return "Line start: " + start.export() + " end: " + end.export() + " colour: " + colour.export() + " Size: " + size;
+        return "LINE " + this.start.export() + " " + this.end.export() + " " + this.colour.export() + " " + this.size;
     }
 }
