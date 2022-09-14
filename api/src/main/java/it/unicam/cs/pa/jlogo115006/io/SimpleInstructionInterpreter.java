@@ -40,14 +40,14 @@ public class SimpleInstructionInterpreter implements InstructionInterpreter {
     public Command createCommand(String instruction) {
         List<String> args = splitInstructionArgs(instruction);
         return switch (args.get(0).toUpperCase()) {
-            case "FORWARD" -> new MoveCommand(List.of("FORWARD", args.get(1)));
-            case "BACKWARD" -> new MoveCommand(List.of("BACKWARD", args.get(1)));
-            case "LEFT" -> new RotateCommand(List.of("LEFT", args.get(1)));
-            case "RIGHT" -> new RotateCommand(List.of("RIGHT", args.get(1)));
-            case "CLEARSCREEN" -> new ClearScreenCommand();
+            case "FORWARD", "FD" -> new MoveCommand(List.of("FORWARD", args.get(1)));
+            case "BACKWARD", "BD" -> new MoveCommand(List.of("BACKWARD", args.get(1)));
+            case "LEFT", "LT" -> new RotateCommand(List.of("LEFT", args.get(1)));
+            case "RIGHT", "RT" -> new RotateCommand(List.of("RIGHT", args.get(1)));
+            case "CLEARSCREEN", "CS" -> new ClearScreenCommand();
             case "HOME" -> new HomeCommand();
-            case "PENUP" -> new ChangePenStatusCommand("UP");
-            case "PENDOWN" -> new ChangePenStatusCommand("DOWN");
+            case "PENUP", "PU" -> new ChangePenStatusCommand("UP");
+            case "PENDOWN", "PD" -> new ChangePenStatusCommand("DOWN");
             case "SETPENCOLOR" -> new SetPenColorCommand(List.of(args.get(1), args.get(2), args.get(3)));
             case "SETFILLCOLOR" -> new SetFillColorCommand(List.of(args.get(1), args.get(2), args.get(3)));
             case "SETSCREENCOLOR" -> new SetScreenColorCommand(List.of(args.get(1), args.get(2), args.get(3)));
