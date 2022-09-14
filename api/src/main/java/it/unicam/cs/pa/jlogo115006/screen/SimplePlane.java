@@ -51,12 +51,12 @@ public class SimplePlane implements Plane<SimplePoint> {
      * @param cursorPosition   the cursor position
      */
     public SimplePlane(Colour backgroundColour, double width, double height, Cursor cursor, SimplePoint cursorPosition) {
+        this.width = requirePositive(width);
+        this.height = requirePositive(height);
         this.shapes = new ArrayList<>();
         this.homePoint = new SimplePoint(width / 2, height / 2);
         this.cursor = Objects.requireNonNull(cursor);
         this.backgroundColour = Objects.requireNonNull(backgroundColour);
-        this.width = requirePositive(width);
-        this.height = requirePositive(height);
         this.cursorPosition = Objects.requireNonNull(cursorPosition);
         logger.info("New simple plane successfully created");
     }
