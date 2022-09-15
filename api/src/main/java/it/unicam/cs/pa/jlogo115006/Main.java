@@ -26,12 +26,8 @@ public class Main {
                 String outputPath = scanner.next();
                 Controller controller = new Controller(new SimplePlane(planeWidth, planeHeight), new FromConsoleInstructionReader(scanner), outputPath);
                 System.out.println("You can now insert your instructions, one per line. When you are done, type \"exit\".");
-                while (true) {
-                    System.out.println("Insert instruction:");
-                    if (scanner.nextLine().equals("exit")) break;
-                    controller.runSingleInstruction();
-                }
-                controller.export();
+
+
             }
             case "1" -> {
                 System.out.println("Insert input path:");
