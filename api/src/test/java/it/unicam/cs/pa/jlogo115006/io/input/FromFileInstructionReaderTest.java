@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class FromFileInstructionReaderTest {
     @Test
     public void shouldReadLineByLine() throws FileNotFoundException {
-        FromFileInstructionReader reader = new FromFileInstructionReader("src/test/java/it/unicam/cs/pa/jlogo115006/io/input/inputTest.txt");
+        FromFileInstructionReader reader = new FromFileInstructionReader("src/test/resources/textFiles/inputTest.txt");
         assertEquals("FORWARD 10", reader.readLine());
         assertEquals("LEFT 30", reader.readLine());
         assertEquals("PENUP", reader.readLine());
@@ -30,7 +30,7 @@ public class FromFileInstructionReaderTest {
 
     @Test
     public void shouldReadAllLines() throws FileNotFoundException {
-        FromFileInstructionReader reader = new FromFileInstructionReader("src/test/java/it/unicam/cs/pa/jlogo115006/io/input/inputTest.txt");
+        FromFileInstructionReader reader = new FromFileInstructionReader("src/test/resources/textFiles/inputTest.txt");
         List<String> expected = List.of("FORWARD 10", "LEFT 30", "PENUP", "SETPENCOLOR 25 25 25");
         List<String> actual = reader.readLines();
         assertEquals(expected, actual);
@@ -38,7 +38,7 @@ public class FromFileInstructionReaderTest {
 
     @Test
     public void shouldCreateMultipleRepeatCommands() throws FileNotFoundException {
-        FromFileInstructionReader reader = new FromFileInstructionReader("src/test/java/it/unicam/cs/pa/jlogo115006/io/input/inputTest2.txt");
+        FromFileInstructionReader reader = new FromFileInstructionReader("src/test/resources/textFiles/inputTest2.txt");
         InstructionInterpreter interpreter = new SimpleInstructionInterpreter();
         Plane<SimplePoint> plane = new SimplePlane(100, 100);
         Designer designer = new SimpleDesigner(plane);

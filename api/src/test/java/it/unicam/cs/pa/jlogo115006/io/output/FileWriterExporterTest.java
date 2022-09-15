@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class FileWriterExporterTest {
     @Test
     public void shouldExport() throws IOException {
-        FileWriterExporter exporter = new FileWriterExporter("src/test/java/it/unicam/cs/pa/jlogo115006/io/output/outputTest.txt");
+        FileWriterExporter exporter = new FileWriterExporter("src/test/resources/textFiles/outputTest.txt");
         Plane<SimplePoint> plane = new SimplePlane(50, 50);
         Designer designer = new SimpleDesigner(plane);
         InstructionInterpreter interpreter = new SimpleInstructionInterpreter();
@@ -34,21 +34,20 @@ public class FileWriterExporterTest {
     }
 
     private void isExpectedOutput() throws FileNotFoundException {
-        LineNumberReader reader = new LineNumberReader(new FileReader("src/test/java/it/unicam/cs/pa/jlogo115006/io/output/outputTest.txt"));
+        LineNumberReader reader = new LineNumberReader(new FileReader("src/test/resources/textFiles/outputTest.txt"));
         assertEquals(getExpectedOutput(), reader.lines().collect(Collectors.toList()));
     }
 
     private List<String> getExpectedOutput() {
         return List.of(
-                "Plane width 50.0 height 50.0 background colour: rgb(255,255,255)",
-                "Polygon Lines: 4 Colour: rgb(255,255,255)",
-                "\tPolygon lines:",
-                "\t\tLine start: (25.0; 15.000000000000002) end: (25.0; 25.0) colour: rgb(0,0,0) Size: 1",
-                "\t\tLine start: (35.0; 15.0) end: (25.0; 15.000000000000002) colour: rgb(0,0,0) Size: 1",
-                "\t\tLine start: (35.0; 25.0) end: (35.0; 15.0) colour: rgb(0,0,0) Size: 1",
-                "\t\tLine start: (25.0; 25.0) end: (35.0; 25.0) colour: rgb(0,0,0) Size: 1",
-                "\t\t",
-                "Line start: (25.0; 25.0) end: (25.0; 35.0) colour: rgb(0,0,0) Size: 1"
+                "SIZE 50.0 50.0 255 255 255",
+                "POLYGON 4 255 255 255",
+                "25.0 15.000000000000002 0 0 0 1",
+                "35.0 15.0 0 0 0 1",
+                "35.0 25.0 0 0 0 1",
+                "25.0 25.0 0 0 0 1",
+                "",
+                "LINE 25.0 25.0 25.0 35.0 0 0 0 1"
         );
     }
 
