@@ -1,0 +1,1 @@
+repeat 18 [ repeat 5 [ right 40 forward 100 right 120 ] right 20 ]
