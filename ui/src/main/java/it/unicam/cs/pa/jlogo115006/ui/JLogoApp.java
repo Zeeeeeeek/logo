@@ -10,9 +10,9 @@ package it.unicam.cs.pa.jlogo115006.ui;
 import javafx.application.*;
 import javafx.fxml.*;
 import javafx.scene.*;
+
 import javafx.stage.*;
 
-import java.util.*;
 
 public class JLogoApp extends Application {
     /**
@@ -32,11 +32,13 @@ public class JLogoApp extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent parent =  FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("fxml/JLogoMenu.fxml")));
-        Scene scene = new Scene(parent);
-        primaryStage.setTitle("JLogo");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/fxml/JLogoMenu.fxml"));
+            Parent parent = loader.load();
+            Scene scene = new Scene(parent);
+            primaryStage.setTitle("JLogo");
+            primaryStage.setScene(scene);
+            primaryStage.show();
     }
 
     public static void main(String[] args) {

@@ -15,7 +15,7 @@ repositories {
 ext {
     junitVersion = '5.8.2'
 }
-
+mainClassName = 'it.unicam.cs.pa.jlogo115006.ui.JlogoApp'
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
@@ -32,7 +32,7 @@ javafx {
 }
 
 dependencies {
-    implementation (project (":api"))
+    implementation (project (path: ':api'))
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }
