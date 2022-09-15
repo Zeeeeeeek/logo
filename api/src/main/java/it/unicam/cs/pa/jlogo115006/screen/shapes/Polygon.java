@@ -39,7 +39,8 @@ public record Polygon(List<Line> lines, Colour colour) implements Shape {
      */
     @Override
     public String export() {
-        return "POLYGON " + this.lines.size() + " " + this.colour.export() + "\n" + this.lines.stream().map(l -> l.start().export() + " " + l.colour().export() + " " +l.size() + "\n").reduce("", String::concat);
+        return "POLYGON " + this.lines.size() + " " + this.colour.export() + "\n"
+                + this.lines.stream().map(l -> l.start().export() + " " + l.colour().export() + " " +l.size() + "\n").reduce("", String::concat);
     }
 
     /**

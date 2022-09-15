@@ -11,7 +11,6 @@ import it.unicam.cs.pa.jlogo115006.screen.*;
 import it.unicam.cs.pa.jlogo115006.screen.shapes.*;
 
 import java.util.*;
-import java.util.stream.*;
 
 /**
  * This class represents a command that change the screen color.
@@ -42,20 +41,6 @@ public class SetScreenColorCommand implements Command {
     @Override
     public void execute(Plane<? extends Point> plane) {
         plane.setBackgroundColour(newBackgroundColour);
-    }
-
-    /**
-     * Returns a list containing all the integer values.
-     *
-     * @param args command arguments.
-     * @throws IllegalArgumentException if the arguments are of a different amount to that requested
-     * @throws NumberFormatException    if the arguments are not numbers.
-     */
-    private List<Integer> getIntegersFromStrings(List<String> args) {
-        if (args.size() != 3) throw new IllegalArgumentException("Wrong number of arguments");
-        return args.stream()
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
     }
 
 }

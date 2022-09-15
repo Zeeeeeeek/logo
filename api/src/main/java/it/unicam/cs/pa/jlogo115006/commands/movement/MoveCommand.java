@@ -38,10 +38,9 @@ public class MoveCommand implements Command {
      */
     @Override
     public void execute(Plane<? extends Point> plane) {
-        if (direction == MovementDirection.FORWARD) {
-            plane.moveForward(distance);
-        } else {
-            plane.moveBackward(distance);
+        switch (direction) {
+            case FORWARD -> plane.moveForward(distance);
+            case BACKWARD -> plane.moveBackward(distance);
         }
     }
 }

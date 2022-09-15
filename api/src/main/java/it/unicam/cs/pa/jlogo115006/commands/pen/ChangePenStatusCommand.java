@@ -33,10 +33,9 @@ public class ChangePenStatusCommand implements Command {
      */
     @Override
     public void execute(Plane<? extends Point> plane) {
-        if (status == PenStatus.UP) {
-            plane.penUp();
-        } else {
-            plane.penDown();
+        switch (status) {
+            case UP -> plane.penUp();
+            case DOWN -> plane.penDown();
         }
     }
 }

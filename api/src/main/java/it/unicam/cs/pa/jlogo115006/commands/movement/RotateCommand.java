@@ -40,10 +40,9 @@ public class RotateCommand implements Command {
      */
     @Override
     public void execute(Plane<? extends Point> plane) {
-        if (orientation == RotateOrientation.LEFT) {
-            plane.rotateLeft(angle);
-        } else {
-            plane.rotateRight(angle);
+        switch (orientation) {
+            case LEFT -> plane.rotateLeft(angle);
+            case RIGHT -> plane.rotateRight(angle);
         }
     }
 }

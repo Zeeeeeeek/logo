@@ -145,12 +145,12 @@ public interface Plane<P extends Point> extends isExportable {
     /**
      * Removes a handler for the event fired when the background color is changed.
      */
-    public void removeBackgroundColourChangedHandler(Consumer<Colour> handler);
+    void removeBackgroundColourChangedHandler(Consumer<Colour> handler);
 
     /**
      * Adds a handler for the event fired when the background color is changed.
      */
-    public void addBackgroundColourChangedHandler(Consumer<Colour> handler);
+    void addBackgroundColourChangedHandler(Consumer<Colour> handler);
 
 
 }

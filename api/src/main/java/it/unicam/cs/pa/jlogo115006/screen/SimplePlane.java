@@ -228,11 +228,19 @@ public class SimplePlane implements Plane<SimplePoint> {
     private SimplePoint newPosition(Point start, double distance) {
         double x = start.x() + (distance * cosWithDegrees(cursor.getDirection()));
         double y = start.y() + (distance * sinWithDegrees(cursor.getDirection()));
-        if (x > width) x = width;
-        else if (x < 0) x = 0;
-        if (y > height) y = height;
-        else if (y < 0) y = 0;
-        return new SimplePoint(x, y);
+        return new SimplePoint(requireInPlaneBounds(x, width), requireInPlaneBounds(y, height));
+    }
+
+    /**
+     * This method is used to check if a coordinate exceeds the plane's bounds. If so, the coordinate is replaced with
+     * the exceeded bound, otherwise the coordinate is returned.
+     *
+     * @return the coordinate if it is inside the plane's bounds, the exceeded bound otherwise.
+     */
+    private double requireInPlaneBounds(double coordinate, double bound) {
+        if (coordinate > bound) return bound;
+        else if (coordinate < 0) return 0;
+        return coordinate;
     }
 
     /**
