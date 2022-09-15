@@ -42,6 +42,7 @@ public class Controller {
         );
     }
 
+
     public Controller(Plane<? extends Point> plane, FromConsoleInstructionReader reader, String outputPath) throws IOException {
         this(
                 new SimpleInstructionInterpreter(),
