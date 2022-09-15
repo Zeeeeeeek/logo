@@ -410,7 +410,7 @@ public class SimplePlane implements Plane<SimplePoint> {
      * @param shape the shape added to the plane.
      */
     private void callHandlersForNewShapeAdded(Shape shape) {
-        shapeHandlers.forEach(handler -> handler.accept(shape));
+        callHandlersForAConsumerSet(shapeHandlers, shape);
     }
 
     /**
@@ -433,7 +433,11 @@ public class SimplePlane implements Plane<SimplePoint> {
      * Calls all the handlers for the event fired when the background color is changed.
      */
     private void callHandlersForBackgroundColourChanged(Colour colour) {
-        backgroundColourHandlers.forEach(handler -> handler.accept(colour));
+        callHandlersForAConsumerSet(backgroundColourHandlers, colour);
+    }
+
+    private <T> void callHandlersForAConsumerSet(Set<Consumer<T>> consumers, T item) {
+        consumers.forEach(handler -> handler.accept(item));
     }
 
     @Override
