@@ -44,9 +44,10 @@ public class FromFileInstructionReader implements InstructionReader {
     @Override
     public String readLine() {
         try {
-            return reader.readLine();
+            String line = reader.readLine();
+            return line == null ? "" : line;
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Error while reading from file message: " + e);
         }
     }
 }

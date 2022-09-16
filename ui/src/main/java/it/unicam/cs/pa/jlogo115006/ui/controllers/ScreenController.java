@@ -21,10 +21,8 @@ public class ScreenController {
     private Controller controller;
 
     public void onRunSingleClick(ActionEvent actionEvent) {
-        try {
-            controller.runSingleInstruction();
-        } catch (NullPointerException e) {
-            new Alert(Alert.AlertType.ERROR, "No instructions to execute").showAndWait();
+        if(!controller.runSingleInstruction()) {
+            new Alert(Alert.AlertType.ERROR, "No instructions left to run").showAndWait();
         }
         actionEvent.consume();
     }

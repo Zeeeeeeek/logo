@@ -29,7 +29,6 @@ public record RGBColour(int red, int green, int blue) implements Colour {
         isValidColourValue(red);
         isValidColourValue(green);
         isValidColourValue(blue);
-        logger.info("New RGB colour successfully created");
     }
 
     /**

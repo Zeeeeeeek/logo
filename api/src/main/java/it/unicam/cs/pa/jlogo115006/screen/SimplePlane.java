@@ -75,7 +75,10 @@ public class SimplePlane implements Plane<SimplePoint> {
     }
 
     private double requirePositive(double value) {
-        if (value <= 0) throw new IllegalArgumentException("Value must be positive");
+        if (value <= 0) {
+            logger.severe("Plane's dimension must be positive");
+            throw new IllegalArgumentException("Value must be positive");
+        }
         return value;
     }
 
@@ -110,7 +113,6 @@ public class SimplePlane implements Plane<SimplePoint> {
     }
 
     private void rotateCursor(int angle) {
-        logger.info("Rotating cursor of " + angle + " degrees");
         this.cursor.rotate(angle);
     }
 
@@ -153,6 +155,7 @@ public class SimplePlane implements Plane<SimplePoint> {
         SimplePoint start = this.cursorPosition;
         SimplePoint end = newPosition(start, distance);
         this.cursorPosition = end;
+        logger.info("Cursor moved");
         if (isPlot()) addNewLineFromPoints(start, end);
     }
 
@@ -228,7 +231,7 @@ public class SimplePlane implements Plane<SimplePoint> {
     private SimplePoint newPosition(Point start, double distance) {
         double x = start.x() + (distance * cosWithDegrees(cursor.getDirection()));
         double y = start.y() + (distance * sinWithDegrees(cursor.getDirection()));
-        return new SimplePoint(requireInPlaneBounds(x, width), requireInPlaneBounds(y, height));
+        return new SimplePoint(valueMustBeInPlaneBounds(x, width), valueMustBeInPlaneBounds(y, height));
     }
 
     /**
@@ -237,7 +240,7 @@ public class SimplePlane implements Plane<SimplePoint> {
      *
      * @return the coordinate if it is inside the plane's bounds, the exceeded bound otherwise.
      */
-    private double requireInPlaneBounds(double coordinate, double bound) {
+    private double valueMustBeInPlaneBounds(double coordinate, double bound) {
         if (coordinate > bound) return bound;
         else if (coordinate < 0) return 0;
         return coordinate;
@@ -318,6 +321,7 @@ public class SimplePlane implements Plane<SimplePoint> {
     @Override
     public void setBackgroundColour(Colour colour) {
         this.backgroundColour = Objects.requireNonNull(colour);
+        logger.info("Background colour changed");
         callHandlersForBackgroundColourChanged(colour);
     }
 
@@ -348,6 +352,7 @@ public class SimplePlane implements Plane<SimplePoint> {
     public void goHome() {
         SimplePoint start = this.cursorPosition;
         this.cursorPosition = this.homePoint;
+        logger.info("Cursor moved to home position");
         if (isPlot()) addNewLineFromPoints(start, this.homePoint);
     }
 
@@ -356,6 +361,7 @@ public class SimplePlane implements Plane<SimplePoint> {
      */
     @Override
     public void clear() {
+        logger.info("Plane cleared");
         this.shapes.clear();
     }
 
@@ -436,7 +442,6 @@ public class SimplePlane implements Plane<SimplePoint> {
     public void removeBackgroundColourChangedHandler(Consumer<Colour> handler) {
         backgroundColourHandlers.remove(Objects.requireNonNull(handler));
     }
-
     /**
      * Calls all the handlers for the event fired when the background color is changed.
      */

@@ -123,6 +123,7 @@ public class SimpleCursor implements Cursor {
     @Override
     public void setPenSize(int size) {
         this.lineSize = validatePenSize(size);
+        logger.info("Pen size set to " + size);
     }
 
     /**
@@ -148,6 +149,7 @@ public class SimpleCursor implements Cursor {
     @Override
     public void setShapeColour(Colour colour) {
         this.shapeColour = Objects.requireNonNull(colour);
+        logger.info("Shape colour set to " + colour);
     }
 
     /**
@@ -158,6 +160,7 @@ public class SimpleCursor implements Cursor {
     @Override
     public void setLineColour(Colour colour) {
         this.lineColour = Objects.requireNonNull(colour);
+        logger.info("Line colour set to " + colour);
     }
 
 
@@ -169,6 +172,7 @@ public class SimpleCursor implements Cursor {
     @Override
     public void setPlot(boolean plot) {
         this.plot = plot;
+        logger.info("Pen status set to " + plot);
     }
 
     /**
@@ -179,5 +183,6 @@ public class SimpleCursor implements Cursor {
     @Override
     public void rotate(int angle) {
         this.direction = validateDirection(this.direction + angle);
+        logger.info("Cursor now pointing to " + this.direction + " degrees");
     }
 }
