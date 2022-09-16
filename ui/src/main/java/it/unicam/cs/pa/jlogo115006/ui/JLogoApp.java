@@ -33,7 +33,7 @@ public class JLogoApp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/fxml/JLogoMenu.fxml"));
+            loader.setLocation(JLogoApp.class.getResource("/fxml/JLogoMenu.fxml"));
             Parent parent = loader.load();
             Scene scene = new Scene(parent);
             primaryStage.setTitle("JLogo");

@@ -69,8 +69,14 @@ public class Controller {
     /**
      * Runs a single instruction.
      */
-    public void runSingleInstruction() {
-        designer.execute(interpreter.createCommand(reader.readLine()));
+    public boolean runSingleInstruction() {
+        String line = reader.readLine();
+        if(line.isEmpty() || line.equalsIgnoreCase("exit")) {
+            export();
+            return false;
+        }
+        designer.execute(interpreter.createCommand(line));
+        return true;
     }
 
     /**

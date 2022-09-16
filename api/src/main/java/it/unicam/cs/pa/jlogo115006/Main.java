@@ -20,20 +20,20 @@ public class Main {
         System.out.println("Insert plane height:");
         double planeHeight = scanner.nextDouble();
         System.out.println("Select your input mode:\n1 File\n2 Console");
-        switch (scanner.next()) {
+        scanner.nextLine();
+        switch (scanner.nextLine()) {
             case "2" -> {
                 System.out.println("Please insert output file path:");
-                String outputPath = scanner.next();
+                String outputPath = scanner.nextLine();
                 Controller controller = new Controller(new SimplePlane(planeWidth, planeHeight), new FromConsoleInstructionReader(scanner), outputPath);
                 System.out.println("You can now insert your instructions, one per line. When you are done, type \"exit\".");
-
-
+                while (true) if(!controller.runSingleInstruction()) break;
             }
             case "1" -> {
                 System.out.println("Insert input path:");
-                String inputPath = scanner.next();
+                String inputPath = scanner.nextLine();
                 System.out.println("Insert output path:");
-                String outputPath = scanner.next();
+                String outputPath = scanner.nextLine();
                 Controller controller = new Controller(new SimplePlane(planeWidth, planeHeight), inputPath, outputPath);
                 controller.run();
                 controller.export();

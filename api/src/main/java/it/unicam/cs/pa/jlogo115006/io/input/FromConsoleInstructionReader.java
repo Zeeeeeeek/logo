@@ -22,6 +22,6 @@ public class FromConsoleInstructionReader implements InstructionReader {
 
     @Override
     public String readLine() {
-        return scanner.nextLine();
+        return scanner.hasNextLine() ? scanner.nextLine() : "";
     }
 }

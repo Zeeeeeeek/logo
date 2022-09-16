@@ -15,7 +15,6 @@ import javafx.scene.control.*;
 import javafx.stage.*;
 
 import java.io.*;
-import java.util.*;
 
 public class MenuController {
     @FXML
@@ -46,7 +45,8 @@ public class MenuController {
     }
 
     private void setNewScene(Stage stage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource("fxml/JLogoScreen.fxml")));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(MenuController.class.getResource("/fxml/JLogoScreen.fxml"));
         Parent root = loader.load();
         ScreenController controller = loader.getController();
         controller.setStage(stage);
