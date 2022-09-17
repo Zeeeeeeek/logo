@@ -115,11 +115,7 @@ public class SimplePlaneTest {
     @Test
     public void shouldCreateTriangle() {
         Plane<SimplePoint> plane = new SimplePlane(20, 20);
-        plane.moveForward(5);
-        plane.rotateLeft(120);
-        plane.moveForward(5);
-        plane.rotateLeft(120);
-        plane.moveForward(5);
+        drawTriangle(plane);
         assertEquals(1, countPolygons(plane.getShapes()));
         assertEquals(0, countLines(plane.getShapes()));
     }
@@ -127,14 +123,40 @@ public class SimplePlaneTest {
     @Test
     public void shouldCreateSquare() {
         Plane<SimplePoint> plane = new SimplePlane(30, 30);
-        plane.moveForward(5);
-        plane.rotateLeft(90);
-        plane.moveForward(5);
-        plane.rotateLeft(90);
-        plane.moveForward(5);
-        plane.rotateLeft(90);
-        plane.moveForward(5);
+        drawSquare(plane);
         assertEquals(1, countPolygons(plane.getShapes()));
+        assertEquals(0, countLines(plane.getShapes()));
+    }
+
+    private void drawSquare(Plane<SimplePoint> plane) {
+        plane.moveForward(5);
+        plane.rotateLeft(90);
+        plane.moveForward(5);
+        plane.rotateLeft(90);
+        plane.moveForward(5);
+        plane.rotateLeft(90);
+        plane.moveForward(5);
+    }
+
+    private void drawTriangle(Plane<SimplePoint> plane) {
+        plane.moveForward(5);
+        plane.rotateLeft(120);
+        plane.moveForward(5);
+        plane.rotateLeft(120);
+        plane.moveForward(5);
+    }
+
+    @Test
+    public void shouldCreateTwoPolygon() {
+        Plane<SimplePoint> plane = new SimplePlane(800, 800);
+        drawSquare(plane);
+        assertEquals(1, countPolygons(plane.getShapes()));
+        plane.rotateRight(180);
+        plane.penUp();
+        plane.moveForward(10);
+        plane.penDown();
+        drawTriangle(plane);
+        assertEquals(2, countPolygons(plane.getShapes()));
         assertEquals(0, countLines(plane.getShapes()));
     }
 

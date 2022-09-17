@@ -73,10 +73,8 @@ public class Controller {
      */
     public boolean runSingleInstruction() {
         String line = reader.readLine();
-        if(line.isEmpty() || line.equalsIgnoreCase("exit")) {
-            export();
-            return false;
-        }
+        if(line.isEmpty() || line.equalsIgnoreCase("exit")) return false;
+
         designer.execute(interpreter.createCommand(line));
         return true;
     }

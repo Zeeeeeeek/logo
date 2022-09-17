@@ -1,2 +1,0 @@
-SETSCREENCOLOR 54 171 214
-repeat 400 [ repeat 34 [ fd 12 rt 10 ] rt 90 ]

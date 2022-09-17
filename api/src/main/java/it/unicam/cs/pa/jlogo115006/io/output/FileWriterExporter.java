@@ -39,9 +39,8 @@ public class FileWriterExporter implements Exporter<Plane<? extends Point>> {
         } catch (IOException e) {
             logger.severe("Error while writing to file\n" + e.getMessage());
             throw new RuntimeException(e);
-        } finally {
-            close();
         }
+        close();
     }
 
     private void close() {

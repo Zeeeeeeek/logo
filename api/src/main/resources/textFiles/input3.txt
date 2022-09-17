@@ -1,4 +1,0 @@
-fd 100
-setpencolor 44 112 25
-rt 90
-fd 100

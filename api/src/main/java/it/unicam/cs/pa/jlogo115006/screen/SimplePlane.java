@@ -42,6 +42,12 @@ public class SimplePlane implements Plane<SimplePoint> {
     private final Set<Consumer<Colour>> backgroundColourHandlers;
 
     /**
+     * Set of all handlers that will be called when the plane is cleared.
+     */
+    private final Set<Consumer<Colour>> clearHandlers;
+
+
+    /**
      * Creates a new plane with the given width and height, with default background colour and default cursor.
      *
      * @param width  the width of the plane
@@ -71,6 +77,7 @@ public class SimplePlane implements Plane<SimplePoint> {
         this.cursorPosition = Objects.requireNonNull(cursorPosition);
         this.shapeHandlers = new HashSet<>();
         this.backgroundColourHandlers = new HashSet<>();
+        this.clearHandlers = new HashSet<>();
         logger.info("New simple plane successfully created");
     }
 
@@ -180,7 +187,7 @@ public class SimplePlane implements Plane<SimplePoint> {
     private void checkForNewPolygon() {
         int adjacentPointsCounter = 0;
         for (int i = shapes.size() - 1; i > 0; i--) {
-            if (shapes.get(i) instanceof Polygon || shapes.get(i - 1) instanceof Polygon) return;
+            if (shapes.get(i) instanceof Polygon || shapes.get(i - 1) instanceof Polygon) break;
             if (!areAdjacentLines((Line) shapes.get(i), (Line) shapes.get(i - 1))) break;
             adjacentPointsCounter++;
         }
@@ -198,13 +205,13 @@ public class SimplePlane implements Plane<SimplePoint> {
     /**
      * Remove and return the specified number of lines from the shapes list.
      *
-     * @param adjacentLineIndex the number of lines to remove
+     * @param adjacentPointCount the number of lines to remove
      * @return the list of lines removed
      */
-    private List<Line> retrieveAndRemoveLines(int adjacentLineIndex) {
+    private List<Line> retrieveAndRemoveLines(int adjacentPointCount) {
         List<Line> newPolygonLines = new ArrayList<>();
-        for (int i = adjacentLineIndex; i >= 0; i--) {
-            newPolygonLines.add((Line) shapes.remove(i));
+        for (int i = 0; i <= adjacentPointCount; i++) {
+            newPolygonLines.add((Line) shapes.remove(shapes.size() - 1));
         }
         return newPolygonLines;
     }
@@ -362,6 +369,7 @@ public class SimplePlane implements Plane<SimplePoint> {
     @Override
     public void clear() {
         logger.info("Plane cleared");
+        callHandlersForClearedPlane();
         this.shapes.clear();
     }
 
@@ -436,12 +444,40 @@ public class SimplePlane implements Plane<SimplePoint> {
     }
 
     /**
+     * Adds a handler for the  event fired when the plane is cleared.
+     *
+     * @param handler called when the plane is cleared.
+     */
+    @Override
+    public void addClearedHandler(Consumer<Colour> handler) {
+        clearHandlers.add(Objects.requireNonNull(handler));
+    }
+
+    /**
+     * Removes a handler for the  event fired when the plane is cleared.
+     *
+     * @param handler called when the plane is cleared.
+     */
+    @Override
+    public void removeClearedHandler(Consumer<Colour> handler) {
+        clearHandlers.remove(Objects.requireNonNull(handler));
+    }
+
+    /**
+     * Calls all the handlers for the event fired when the plane is cleared.
+     */
+    private void callHandlersForClearedPlane() {
+        callHandlersForAConsumerSet(clearHandlers, this.backgroundColour);
+    }
+
+    /**
      * Removes a handler for the event fired when the background color is changed.
      */
     @Override
     public void removeBackgroundColourChangedHandler(Consumer<Colour> handler) {
         backgroundColourHandlers.remove(Objects.requireNonNull(handler));
     }
+
     /**
      * Calls all the handlers for the event fired when the background color is changed.
      */

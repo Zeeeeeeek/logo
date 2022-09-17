@@ -21,11 +21,12 @@ public class Main {
         double planeHeight = scanner.nextDouble();
         System.out.println("Select your input mode:\n1 File\n2 Console");
         scanner.nextLine();
+        Controller controller;
         switch (scanner.nextLine()) {
             case "2" -> {
                 System.out.println("Please insert output file path:");
                 String outputPath = scanner.nextLine();
-                Controller controller = new Controller(new SimplePlane(planeWidth, planeHeight), new FromConsoleInstructionReader(scanner), outputPath);
+                controller = new Controller(new SimplePlane(planeWidth, planeHeight), new FromConsoleInstructionReader(scanner), outputPath);
                 System.out.println("You can now insert your instructions, one per line. When you are done, type \"exit\".");
                 while (true) if(!controller.runSingleInstruction()) break;
             }
@@ -34,12 +35,12 @@ public class Main {
                 String inputPath = scanner.nextLine();
                 System.out.println("Insert output path:");
                 String outputPath = scanner.nextLine();
-                Controller controller = new Controller(new SimplePlane(planeWidth, planeHeight), inputPath, outputPath);
+                controller = new Controller(new SimplePlane(planeWidth, planeHeight), inputPath, outputPath);
                 controller.run();
-                controller.export();
             }
             default -> throw new IllegalArgumentException("Invalid mode");
         }
+        controller.export();
         System.out.println("Done!");
         scanner.close();
     }

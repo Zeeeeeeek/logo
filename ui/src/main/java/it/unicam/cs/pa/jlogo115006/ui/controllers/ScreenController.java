@@ -42,6 +42,11 @@ public class ScreenController {
         canvas.setWidth(controller.getPlane().getWidth());
         controller.getPlane().addShapeAddedHandler(this::onShapeAdded);
         controller.getPlane().addBackgroundColourChangedHandler(this::onBackgroundColourChanged);
+        controller.getPlane().addClearedHandler(this::onCleared);
+    }
+
+    private void onCleared(Colour colour) {
+        canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
     }
 
     private void onShapeAdded(Shape shape) {

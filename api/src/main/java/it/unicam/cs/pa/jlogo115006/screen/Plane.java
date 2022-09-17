@@ -152,5 +152,13 @@ public interface Plane<P extends Point> extends isExportable {
      */
     void addBackgroundColourChangedHandler(Consumer<Colour> handler);
 
+    /**
+     * Adds a handler for the  event fired when the plane is cleared.
+     */
+    void addClearedHandler(Consumer<Colour> handler);
 
+    /**
+     * Removes a handler for the  event fired when the plane is cleared.
+     */
+    void removeClearedHandler(Consumer<Colour> handler);
 }
