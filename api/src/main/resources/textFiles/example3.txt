@@ -1,3 +1,2 @@
-setscreencolor 143 255 58
-repeat 4 [ fd 100 rt 90 ]
-clearscreen
+setpencolor 166 23 255
+repeat 24 [ repeat 25 [ fd 50 bd 50 rt 15 ] fd 50 ]

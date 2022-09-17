@@ -6,7 +6,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicam.cs.pa.jlogo115006.ui.controllers.MenuController">
    <children>
-      <Label layoutX="164.0" layoutY="14.0" text="Welcome to JLogo" AnchorPane.bottomAnchor="344.0" AnchorPane.leftAnchor="164.0" AnchorPane.rightAnchor="163.0" AnchorPane.topAnchor="14.0">
+      <Label layoutX="255.0" layoutY="26.0" prefHeight="42.0" prefWidth="91.0" text="JLogo" textAlignment="CENTER" AnchorPane.bottomAnchor="332.0" AnchorPane.leftAnchor="255.0" AnchorPane.rightAnchor="254.0" AnchorPane.topAnchor="26.0">
          <font>
             <Font name="Tahoma" size="33.0" />
          </font>

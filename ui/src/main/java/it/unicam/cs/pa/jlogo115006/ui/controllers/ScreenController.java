@@ -46,7 +46,7 @@ public class ScreenController {
     }
 
     private void onCleared(Colour colour) {
-        canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        colorGraphicsContext(colour);
     }
 
     private void onShapeAdded(Shape shape) {
@@ -69,6 +69,7 @@ public class ScreenController {
         graphicsContext2D.setFill(Color.rgb(polygon.colour().red(), polygon.colour().green(), polygon.colour().blue()));
         graphicsContext2D.fillPolygon(polygon.lines().stream().mapToDouble(l -> l.start().x()).toArray(),
                 polygon.lines().stream().mapToDouble(l -> l.start().y()).toArray(), polygon.getLinesNumber());
+        drawAllLines();
     }
 
     public void onSaveClick(ActionEvent actionEvent) {
@@ -78,10 +79,23 @@ public class ScreenController {
     }
 
     private void onBackgroundColourChanged(Colour colour) {
+        colorGraphicsContext(colour);
+        drawShapesOnCanvas();
+        drawAllLines();
+    }
+
+    private void colorGraphicsContext(Colour colour) {
         GraphicsContext graphicsContext2D = canvas.getGraphicsContext2D();
         graphicsContext2D.setFill(Color.rgb(colour.red(), colour.green(), colour.blue()));
         graphicsContext2D.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        drawShapesOnCanvas();
+    }
+
+    private void drawAllLines() {
+        controller.getPlane().getShapes()
+                .forEach(s -> {
+                    if(s instanceof Line line) drawLine(line);
+                    else if(s instanceof Polygon polygon) polygon.lines().forEach(this::drawLine);
+                });
     }
 
     private void drawShapesOnCanvas() {
