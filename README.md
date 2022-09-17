@@ -107,3 +107,4 @@ In the gui mode instructions can be passed only via file.
     REPEAT 4 [ FORWARD 10 RIGHT 90 ]
     REPEAT 4 [ FD 10 REPEAT 4 [ FD 20 RT 10 ] FD 50 ]
     ```
+
