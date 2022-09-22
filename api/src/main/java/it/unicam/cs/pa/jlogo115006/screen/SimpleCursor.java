@@ -9,14 +9,14 @@ package it.unicam.cs.pa.jlogo115006.screen;
 import it.unicam.cs.pa.jlogo115006.screen.shapes.*;
 
 import java.util.*;
-import java.util.logging.Logger;
+import java.util.logging.*;
 
 /**
  * A basic implementation of a cursor.
  */
 public class SimpleCursor implements Cursor {
 
-    private final static Logger logger = Logger.getLogger(SimpleCursor.class.getName());
+    private static final Logger logger = Logger.getLogger(SimpleCursor.class.getName());
 
     private int direction;
     private boolean plot;
@@ -123,7 +123,7 @@ public class SimpleCursor implements Cursor {
     @Override
     public void setPenSize(int size) {
         this.lineSize = validatePenSize(size);
-        logger.info("Pen size set to " + size);
+        logger.log(Level.INFO, "Pen size set to {0}", size);
     }
 
     /**
@@ -149,7 +149,7 @@ public class SimpleCursor implements Cursor {
     @Override
     public void setShapeColour(Colour colour) {
         this.shapeColour = Objects.requireNonNull(colour);
-        logger.info("Shape colour set to " + colour);
+        logger.log(Level.INFO, "Shape colour set to {0}", colour);
     }
 
     /**
@@ -160,7 +160,7 @@ public class SimpleCursor implements Cursor {
     @Override
     public void setLineColour(Colour colour) {
         this.lineColour = Objects.requireNonNull(colour);
-        logger.info("Line colour set to " + colour);
+        logger.log(Level.INFO, "Line colour set to {0}", colour);
     }
 
 
@@ -172,7 +172,7 @@ public class SimpleCursor implements Cursor {
     @Override
     public void setPlot(boolean plot) {
         this.plot = plot;
-        logger.info("Pen status set to " + plot);
+        logger.log(Level.INFO, "Pen status set to {0}", plot);
     }
 
     /**
@@ -183,6 +183,6 @@ public class SimpleCursor implements Cursor {
     @Override
     public void rotate(int angle) {
         this.direction = validateDirection(this.direction + angle);
-        logger.info("Cursor now pointing to " + this.direction + " degrees");
+        logger.log(Level.INFO, "Cursor now pointing to {0} degrees", this.direction);
     }
 }

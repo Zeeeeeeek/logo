@@ -6,18 +6,17 @@
 
 package it.unicam.cs.pa.jlogo115006.commands.movement;
 
-import it.unicam.cs.pa.jlogo115006.commands.movement.*;
 import it.unicam.cs.pa.jlogo115006.screen.*;
 import it.unicam.cs.pa.jlogo115006.screen.shapes.*;
 import org.junit.jupiter.api.*;
 
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class RotateCommandTest {
+class RotateCommandTest {
     @Test
-    public void shouldRotateWithDifferentValues() {
+    void shouldRotateWithDifferentValues() {
         Plane<SimplePoint> plane = new SimplePlane(30,30);
         rotate("left", 90, plane);
         assertEquals(90, plane.getCursor().getDirection());
@@ -32,7 +31,7 @@ public class RotateCommandTest {
     }
 
     @Test
-    public void shouldThrowExceptionWithWrongArgument() {
+    void shouldThrowExceptionWithWrongArgument() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> new RotateCommand(List.of("wrong", "90")));
     }
 

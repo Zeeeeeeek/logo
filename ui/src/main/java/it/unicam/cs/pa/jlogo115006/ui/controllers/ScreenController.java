@@ -21,7 +21,7 @@ public class ScreenController {
     private Controller controller;
 
     public void onRunSingleClick(ActionEvent actionEvent) {
-        if(!controller.runSingleInstruction()) {
+        if(controller.runSingleValidInstruction()) {
             new Alert(Alert.AlertType.ERROR, "No instructions left to run").showAndWait();
         }
         actionEvent.consume();
@@ -29,7 +29,7 @@ public class ScreenController {
 
     public void onRunAllClick(ActionEvent actionEvent) {
         try {
-            controller.run();
+            controller.runAll();
         } catch (NullPointerException e) {
             new Alert(Alert.AlertType.ERROR, "No instructions to execute").showAndWait();
         }
@@ -40,6 +40,7 @@ public class ScreenController {
         controller = (Controller) stage.getUserData();
         canvas.setHeight(controller.getPlane().getHeight());
         canvas.setWidth(controller.getPlane().getWidth());
+        colorGraphicsContext(controller.getPlane().getBackgroundColour());
         controller.getPlane().addShapeAddedHandler(this::onShapeAdded);
         controller.getPlane().addBackgroundColourChangedHandler(this::onBackgroundColourChanged);
         controller.getPlane().addClearedHandler(this::onCleared);

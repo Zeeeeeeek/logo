@@ -46,36 +46,6 @@ public record RGBColour(int red, int green, int blue) implements Colour {
     }
 
     /**
-     * Returns the red component of the color.
-     *
-     * @return the red component of the color.
-     */
-    @Override
-    public int red() {
-        return this.red;
-    }
-
-    /**
-     * Returns the green component of the color.
-     *
-     * @return the green component of the color.
-     */
-    @Override
-    public int green() {
-        return this.green;
-    }
-
-    /**
-     * Returns the blue component of the color.
-     *
-     * @return the blue component of the color.
-     */
-    @Override
-    public int blue() {
-        return this.blue;
-    }
-
-    /**
      * Returns a string representation of the colour.
      *
      * @return a string representation of the colour.

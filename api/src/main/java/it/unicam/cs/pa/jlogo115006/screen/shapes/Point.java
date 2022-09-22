@@ -11,7 +11,7 @@ import it.unicam.cs.pa.jlogo115006.io.output.*;
 /**
  * Represents a point in a plane identified by its coordinates.
  */
-public interface Point extends isExportable {
+public interface Point extends IsExportable {
     /**
      * Returns the x value.
      *
@@ -26,11 +26,7 @@ public interface Point extends isExportable {
      */
     double y();
 
-    default boolean equals(Point other) {
-        return areDoubleEquals(this.x(), other.x()) && areDoubleEquals(this.y(), other.y());
-    }
+    @Override
+    boolean equals(Object other);
 
-    private boolean areDoubleEquals(double val1, double val2) {
-        return val1 == val2 || Math.abs(val1 - val2) <= 0.0001;
-    }
 }

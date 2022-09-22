@@ -11,14 +11,11 @@ import it.unicam.cs.pa.jlogo115006.screen.*;
 import it.unicam.cs.pa.jlogo115006.screen.shapes.*;
 import org.junit.jupiter.api.*;
 
-import java.util.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-public class ChangePenStatusCommandTest {
+class ChangePenStatusCommandTest {
     @Test
-    public void shouldChangePenStatus() {
+    void shouldChangePenStatus() {
         Plane<SimplePoint> plane = new SimplePlane(30,30);
         assertTrue(plane.isPlot());
         Command penUp = new ChangePenStatusCommand("up");
@@ -30,7 +27,7 @@ public class ChangePenStatusCommandTest {
     }
 
     @Test
-    public void shouldThrowExceptionWithWrongArgument() {
+    void shouldThrowExceptionWithWrongArgument() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> new ChangePenStatusCommand("wrong"));
     }
 }

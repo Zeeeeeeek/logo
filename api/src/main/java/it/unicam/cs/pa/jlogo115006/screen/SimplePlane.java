@@ -18,7 +18,7 @@ import java.util.stream.*;
  */
 public class SimplePlane implements Plane<SimplePoint> {
 
-    private final static Logger logger = Logger.getLogger(SimplePlane.class.getName());
+    private static final Logger logger = Logger.getLogger(SimplePlane.class.getName());
 
     private final List<Shape> shapes;
     private final Cursor cursor;

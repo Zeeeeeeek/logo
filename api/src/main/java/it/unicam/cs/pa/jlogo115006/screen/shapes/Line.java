@@ -37,17 +37,6 @@ public record Line(Point start, Point end, Colour colour, int size) implements S
         }
         logger.info("New Line has been drawn");
     }
-
-    /**
-     * Return the colour of the shape.
-     *
-     * @return the colour of the shape.
-     */
-    @Override
-    public Colour colour() {
-        return this.colour;
-    }
-
     /**
      * This method returns a string representation of this line.
      *

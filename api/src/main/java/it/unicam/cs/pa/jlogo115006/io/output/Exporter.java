@@ -10,7 +10,7 @@ package it.unicam.cs.pa.jlogo115006.io.output;
 /**
  * This class has the responsibility to export a plane.
  */
-public interface Exporter<E extends isExportable> {
+public interface Exporter<E extends IsExportable> {
     /**
      * Exports the element
      * @param toExport the element to be exported

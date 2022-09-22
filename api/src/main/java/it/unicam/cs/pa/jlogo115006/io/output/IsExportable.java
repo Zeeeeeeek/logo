@@ -10,7 +10,7 @@ package it.unicam.cs.pa.jlogo115006.io.output;
  * This class guarantees the exportability of a certain element
  */
 
-public interface isExportable {
+public interface IsExportable {
     /**
      * Returns a string representation of the object.
      * @return a string representation of the object.

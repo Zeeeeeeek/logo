@@ -12,7 +12,7 @@ import it.unicam.cs.pa.jlogo115006.io.output.*;
 /**
  * Represents a color in the logo language.
  */
-public interface Colour extends isExportable {
+public interface Colour extends IsExportable {
     /**
      * Returns the red component of the color.
      *

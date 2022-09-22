@@ -67,14 +67,13 @@ public class Controller {
     }
 
     /**
-     * Runs a single instruction.
+     * Runs a single instruction if not an escape keyword or the input has ended.
      *
      * @return false if the instruction is "exit" or if the reader has no more instructions to read, true otherwise.
      */
-    public boolean runSingleInstruction() {
+    public boolean runSingleValidInstruction() {
         String line = reader.readLine();
         if(line.isEmpty() || line.equalsIgnoreCase("exit")) return false;
-
         designer.execute(interpreter.createCommand(line));
         return true;
     }
@@ -82,7 +81,7 @@ public class Controller {
     /**
      * Runs all the instructions.
      */
-    public void run() {
+    public void runAll() {
         designer.execute(interpreter.createCommands(reader.readLines()));
     }
 

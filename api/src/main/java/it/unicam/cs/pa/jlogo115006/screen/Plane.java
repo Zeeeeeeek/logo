@@ -16,7 +16,7 @@ import java.util.function.*;
  * It represents a plane whose points are identified by coordinates. Manages the shapes drawn on it and the cursor.
  *
  */
-public interface Plane<P extends Point> extends isExportable {
+public interface Plane<P extends Point> extends IsExportable {
     /**
      * Returns the coordinates of the point where the cursor is.
      *

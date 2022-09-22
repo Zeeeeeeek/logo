@@ -5,29 +5,30 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
+
 <!--
   ~ JLogo: A simple java application for logo language interpretation
   ~ Copyright (c) 2022. Enrico Ulissi
   ~ Use of this source code is governed by an MIT-style license that can be found in the LICENSE file or at https://opensource.org/licenses/MIT.
   -->
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicam.cs.pa.jlogo115006.ui.controllers.ScreenController">
-   <Canvas fx:id="canvas" height="600.0" width="700.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-   <Button layoutX="14.0" layoutY="601.0" mnemonicParsing="false" onAction="#onRunSingleClick" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="14.0">
+<AnchorPane prefHeight="680.0" prefWidth="700.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicam.cs.pa.jlogo115006.ui.controllers.ScreenController">
+   <Canvas fx:id="canvas" height="640.0" width="700.0" AnchorPane.bottomAnchor="48.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+   <Button layoutY="634.0" mnemonicParsing="false" onAction="#onRunSingleClick" styleClass="instruction-button" text="Run Single Instruction" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
       <tooltip><Tooltip text="Run single instruction" /></tooltip>
       <graphic>
-         <ImageView fitHeight="30" fitWidth="40" pickOnBounds="true" preserveRatio="true" >
+         <ImageView fitHeight="30" fitWidth="40" pickOnBounds="true" preserveRatio="true">
             <Image url="@../icons/skip.png" />
          </ImageView>
       </graphic></Button>
-   <Button layoutX="60.0" layoutY="601.0" mnemonicParsing="false" onAction="#onRunAllClick" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="60.0">
+   <Button layoutX="197.0" layoutY="634.0" mnemonicParsing="false" onAction="#onRunAllClick" styleClass="instruction-button" text="Run All Instructions" AnchorPane.bottomAnchor="0.0">
       <tooltip><Tooltip text="Run all instructions" /></tooltip>
       <graphic>
          <ImageView fitHeight="30" fitWidth="40" pickOnBounds="true" preserveRatio="true">
             <Image url="@../icons/skipAll.png" />
          </ImageView>
       </graphic></Button>
-   <Button layoutX="106.0" layoutY="601.0" mnemonicParsing="false" onAction="#onSaveClick" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="106.0">
+   <Button alignment="BOTTOM_RIGHT" layoutX="719.0" layoutY="634.0" mnemonicParsing="false" onAction="#onSaveClick" styleClass="instruction-button" text="Save" AnchorPane.bottomAnchor="0.0">
       <tooltip><Tooltip text="Save drawing" /></tooltip>
       <graphic>
          <ImageView fitHeight="30" fitWidth="40" pickOnBounds="true" preserveRatio="true">

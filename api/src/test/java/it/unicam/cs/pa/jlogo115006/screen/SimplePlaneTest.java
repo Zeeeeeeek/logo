@@ -14,23 +14,23 @@ import java.util.stream.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class SimplePlaneTest {
+class SimplePlaneTest {
 
     @Test
-    public void shouldBeCreatedWithDefaultValues() {
+    void shouldBeCreatedWithDefaultValues() {
         Plane<SimplePoint> plane = new SimplePlane(100, 100);
         verifyXAndY(getCursorX(plane), getCursorY(plane), 50, 50);
         assertEquals(new RGBColour(255, 255, 255), plane.getBackgroundColour());
     }
 
     @Test
-    public void shouldThrowExceptionWithNegativeValues() {
+    void shouldThrowExceptionWithNegativeValues() {
         assertThrows(IllegalArgumentException.class, () -> new SimplePlane(-100, 100));
         assertThrows(IllegalArgumentException.class, () -> new SimplePlane(100, -100));
     }
 
     @Test
-    public void cursorRotation() {
+    void cursorRotation() {
         Plane<SimplePoint> plane = new SimplePlane(100, 100);
         plane.rotateRight(90);
         assertEquals(270, plane.getCursor().getDirection());
@@ -39,7 +39,7 @@ public class SimplePlaneTest {
     }
 
     @Test
-    public void cursorMoveWithoutRotation() {
+    void cursorMoveWithoutRotation() {
         Plane<SimplePoint> plane = new SimplePlane(100, 100);
         plane.moveForward(10);
         verifyXAndY(getCursorX(plane), getCursorY(plane), 60, 50);
@@ -49,7 +49,7 @@ public class SimplePlaneTest {
 
 
     @Test
-    public void cursorMoveWithRotation() {
+    void cursorMoveWithRotation() {
         Plane<SimplePoint> plane = new SimplePlane(100, 100);
         plane.rotateRight(45);
         plane.moveForward(10);
@@ -61,7 +61,7 @@ public class SimplePlaneTest {
 
 
     @Test
-    public void exceedingPlaneBoundsOnStraightMovements () {
+    void exceedingPlaneBoundsOnStraightMovements () {
         Plane<SimplePoint> plane = new SimplePlane(20, 20);
         plane.moveForward(15);
         verifyXAndY(getCursorX(plane), getCursorY(plane), 20, 10, 0.00000001);
@@ -76,7 +76,7 @@ public class SimplePlaneTest {
 
 
     @Test
-    public void exceedingPlaneBoundsOnDiagonalMovements() {
+    void exceedingPlaneBoundsOnDiagonalMovements() {
         Plane<SimplePoint> plane = new SimplePlane(20, 20);
         plane.rotateRight(45);
         plane.moveForward(30);
@@ -92,7 +92,7 @@ public class SimplePlaneTest {
     }
 
     @Test
-    public void shouldCreateLines() {
+    void shouldCreateLines() {
         Plane<SimplePoint> plane = new SimplePlane(20, 20);
         plane.moveForward(5);
         assertEquals(1, countLines(plane.getShapes()));
@@ -102,7 +102,7 @@ public class SimplePlaneTest {
     }
 
     @Test
-    public void shouldNotCreateTwoLines() {
+    void shouldNotCreateTwoLines() {
         Plane<SimplePoint> plane = new SimplePlane(20, 20);
         plane.moveForward(2);
         assertEquals(1, countLines(plane.getShapes()));
@@ -113,7 +113,7 @@ public class SimplePlaneTest {
 
 
     @Test
-    public void shouldCreateTriangle() {
+    void shouldCreateTriangle() {
         Plane<SimplePoint> plane = new SimplePlane(20, 20);
         drawTriangle(plane);
         assertEquals(1, countPolygons(plane.getShapes()));
@@ -121,7 +121,7 @@ public class SimplePlaneTest {
     }
 
     @Test
-    public void shouldCreateSquare() {
+    void shouldCreateSquare() {
         Plane<SimplePoint> plane = new SimplePlane(30, 30);
         drawSquare(plane);
         assertEquals(1, countPolygons(plane.getShapes()));
@@ -147,7 +147,7 @@ public class SimplePlaneTest {
     }
 
     @Test
-    public void shouldCreateTwoPolygon() {
+    void shouldCreateTwoPolygon() {
         Plane<SimplePoint> plane = new SimplePlane(800, 800);
         drawSquare(plane);
         assertEquals(1, countPolygons(plane.getShapes()));
@@ -161,7 +161,7 @@ public class SimplePlaneTest {
     }
 
     @Test
-    public void shouldNotCreatePolygon() {
+    void shouldNotCreatePolygon() {
         Plane<SimplePoint> plane = new SimplePlane(20, 20);
         plane.moveForward(5);
         plane.rotateLeft(120);
@@ -174,7 +174,7 @@ public class SimplePlaneTest {
     }
 
     @Test
-    public void shouldCreateOneLineAndOnePolygon() {
+    void shouldCreateOneLineAndOnePolygon() {
         Plane<SimplePoint> plane = new SimplePlane(30, 30);
         plane.moveForward(1);
         assertEquals(1, countLines(plane.getShapes()));
@@ -191,7 +191,7 @@ public class SimplePlaneTest {
     }
 
     @Test
-    public void shouldCreateLinesOfDifferentSize() {
+    void shouldCreateLinesOfDifferentSize() {
         Plane<SimplePoint> plane = new SimplePlane(30, 30);
         plane.moveForward(2);
         plane.rotateLeft(90);

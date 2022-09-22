@@ -15,9 +15,9 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class SetFillColorCommandTest {
+class SetFillColorCommandTest {
     @Test
-    public void shouldChangeTheShapeColour() {
+    void shouldChangeTheShapeColour() {
         Plane<SimplePoint> plane = new SimplePlane(30, 30);
         SetFillColorCommand command = new SetFillColorCommand(List.of("255", "0", "0"));
         command.execute(plane);
@@ -25,13 +25,13 @@ public class SetFillColorCommandTest {
     }
 
     @Test
-    public void shouldThrowIllegalArgumentExceptionIfTheArgumentsAreInvalid() {
+    void shouldThrowIllegalArgumentExceptionIfTheArgumentsAreInvalid() {
         assertThrows(IllegalArgumentException.class, () -> new SetFillColorCommand(List.of("255", "0")));
         assertThrows(IllegalArgumentException.class, () -> new SetFillColorCommand(List.of("255", "0", "300")));
     }
 
     @Test
-    public void shouldThrowNumberFormatExceptionIfTheStringsDoesNotContainAParsableInteger() {
+    void shouldThrowNumberFormatExceptionIfTheStringsDoesNotContainAParsableInteger() {
         assertThrows(NumberFormatException.class, () -> new SetFillColorCommand(List.of("255", "0", "a")));
     }
 }

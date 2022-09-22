@@ -15,9 +15,9 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class SetScreenColorCommandTest {
+class SetScreenColorCommandTest {
     @Test
-    public void shouldSetScreenColor() {
+    void shouldSetScreenColor() {
         Plane<SimplePoint> plane = new SimplePlane(30, 30);
         SetScreenColorCommand command = new SetScreenColorCommand(List.of("255", "0", "0"));
         assertEquals(RGBColour.colourOf("255", "255", "255"), plane.getBackgroundColour());
@@ -26,13 +26,13 @@ public class SetScreenColorCommandTest {
     }
 
     @Test
-    public void shouldThrowExceptionIfWrongArguments() {
+    void shouldThrowExceptionIfWrongArguments() {
         assertThrows(IllegalArgumentException.class, () -> new SetScreenColorCommand(List.of("255", "0")));
         assertThrows(IllegalArgumentException.class, () -> new SetScreenColorCommand(List.of("255", "0", "300")));
     }
 
     @Test
-    public void shouldThrowExceptionIfArgsAreNotNumbers() {
+    void shouldThrowExceptionIfArgsAreNotNumbers() {
         assertThrows(NumberFormatException.class, () -> new SetScreenColorCommand(List.of("255", "0", "a")));
     }
 

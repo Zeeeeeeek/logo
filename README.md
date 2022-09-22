@@ -23,7 +23,7 @@ repeat 400 [ repeat 34 [ fd 12 rt 10 ] rt 90 ]
 
 #### Example 3
 ![example3]()
-```
+```css
 setpencolor 166 23 255
 repeat 24 [ repeat 25 [ fd 50 bd 50 rt 15 ] fd 50 ]
 ```

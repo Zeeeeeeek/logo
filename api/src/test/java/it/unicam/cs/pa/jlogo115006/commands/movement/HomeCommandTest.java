@@ -14,9 +14,9 @@ import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class HomeCommandTest {
+class HomeCommandTest {
     @Test
-    public void shouldGoHome() {
+    void shouldGoHome() {
         Plane<SimplePoint> plane = new SimplePlane(30,30);
         plane.moveForward(10);
         Command goHome = new HomeCommand();

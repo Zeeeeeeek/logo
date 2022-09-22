@@ -16,9 +16,9 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class RepeatCommandTest {
+class RepeatCommandTest {
     @Test
-    public void shouldRepeatCommands() {
+    void shouldRepeatCommands() {
         Plane<SimplePoint> plane = new SimplePlane(100,100);
         List<Command> commands = generateCommands();
         Command repeat = new RepeatCommand("4", commands);
@@ -27,7 +27,7 @@ public class RepeatCommandTest {
     }
 
     @Test
-    public void shouldThrowIllegalArgumentExceptionWithWrongArgument() {
+    void shouldThrowIllegalArgumentExceptionWithWrongArgument() {
         assertThrows(IllegalArgumentException.class, () -> new RepeatCommand("0", List.of(new HomeCommand(), new HomeCommand())));
     }
 
@@ -36,7 +36,7 @@ public class RepeatCommandTest {
     }
 
     @Test
-    public void multipleRepeatCommand() {
+    void multipleRepeatCommand() {
         Plane<SimplePoint> plane = new SimplePlane(100, 100);
         List<Command> commands = List.of(new MoveCommand(List.of("Forward", "5")));
         Command toBeRepeated = new RepeatCommand("2", commands);

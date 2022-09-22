@@ -15,9 +15,9 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class SetPenColorCommandTest {
+class SetPenColorCommandTest {
     @Test
-    public void shouldSetPenColor() {
+    void shouldSetPenColor() {
         Plane<SimplePoint> plane = new SimplePlane(30, 30);
         SetPenColorCommand command = new SetPenColorCommand(List.of("255", "0", "0"));
         command.execute(plane);
@@ -25,13 +25,13 @@ public class SetPenColorCommandTest {
     }
 
     @Test
-    public void shouldThrowExceptionIfInvalidArguments() {
+    void shouldThrowExceptionIfInvalidArguments() {
         assertThrows(IllegalArgumentException.class, () -> new SetPenColorCommand(List.of("255", "0")));
         assertThrows(IllegalArgumentException.class, () -> new SetPenColorCommand(List.of("255", "0", "300")));
     }
 
     @Test
-    public void shoultThrowExceptionIfNotNumbers() {
+    void shouldThrowExceptionIfNotNumbers() {
         assertThrows(NumberFormatException.class, () -> new SetPenColorCommand(List.of("255", "0", "a")));
     }
 }

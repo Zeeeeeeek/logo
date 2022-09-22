@@ -12,9 +12,9 @@ import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ClearScreenCommandTest {
+class ClearScreenCommandTest {
     @Test
-    public void shouldClearScreen() {
+    void shouldClearScreen() {
         Plane<SimplePoint> plane = new SimplePlane(100, 100);
         plane.moveForward(10);
         assertEquals(1, plane.getShapes().size());

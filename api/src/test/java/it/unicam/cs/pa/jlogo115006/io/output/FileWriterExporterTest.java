@@ -20,9 +20,9 @@ import java.util.stream.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class FileWriterExporterTest {
+class FileWriterExporterTest {
     @Test
-    public void shouldExport() throws IOException {
+    void shouldExport() throws IOException {
         FileWriterExporter exporter = new FileWriterExporter("src/test/resources/textFiles/outputTest.txt");
         Plane<SimplePoint> plane = new SimplePlane(50, 50);
         Designer designer = new SimpleDesigner(plane);

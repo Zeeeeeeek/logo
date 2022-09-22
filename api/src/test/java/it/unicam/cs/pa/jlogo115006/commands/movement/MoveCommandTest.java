@@ -16,9 +16,9 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class MoveCommandTest {
+class MoveCommandTest {
     @Test
-    public void shouldMove() {
+    void shouldMove() {
         Plane<SimplePoint> plane = new SimplePlane(30,30);
         Command moveForward = new MoveCommand(List.of("FORWARD", "10"));
         moveForward.execute(plane);
@@ -31,13 +31,13 @@ public class MoveCommandTest {
     }
 
     @Test
-    public void shouldThrowExceptionIfWrongArguments() {
+    void shouldThrowExceptionIfWrongArguments() {
         assertThrows(IllegalArgumentException.class, () -> new MoveCommand(List.of("FORWARD")));
         assertThrows(IllegalArgumentException.class, () -> new MoveCommand(List.of("FORWARD", "10", "20")));
     }
 
     @Test
-    public void shouldThrowExceptionIfArgsAreNotNumbers() {
+    void shouldThrowExceptionIfArgsAreNotNumbers() {
         assertThrows(NumberFormatException.class, () -> new MoveCommand(List.of("FORWARD", "a")));
     }
 }

@@ -14,9 +14,9 @@ import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class SetPenSizeCommandTest {
+class SetPenSizeCommandTest {
     @Test
-    public void shouldChangePenSize() {
+    void shouldChangePenSize() {
         Plane<SimplePoint> plane = new SimplePlane(30, 30);
         SetPenSizeCommand command = new SetPenSizeCommand("10");
         assertEquals(1, plane.getCursor().getPenSize());
@@ -25,12 +25,12 @@ public class SetPenSizeCommandTest {
     }
 
     @Test
-    public void shouldThrowExceptionIfNotNumber() {
+    void shouldThrowExceptionIfNotNumber() {
         assertThrows(NumberFormatException.class, () -> new SetPenSizeCommand("a"));
     }
 
     @Test
-    public void shouldThrowExceptionIfNegativeNumber() {
+    void shouldThrowExceptionIfNegativeNumber() {
         assertThrows(IllegalArgumentException.class, () -> new SetPenSizeCommand("-1").execute(new SimplePlane(30, 30)));
     }
 }

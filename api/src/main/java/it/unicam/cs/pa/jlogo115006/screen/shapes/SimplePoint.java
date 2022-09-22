@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  * @param y y coordinate
  */
 public record SimplePoint(double x, double y) implements Point {
-    private final static Logger logger = Logger.getLogger(SimplePoint.class.getName());
+    private static final Logger logger = Logger.getLogger(SimplePoint.class.getName());
     /**
      * Creates a new point with the given coordinates.
      *
@@ -35,24 +35,17 @@ public record SimplePoint(double x, double y) implements Point {
         }
     }
 
-    /**
-     * Returns the x value.
-     *
-     * @return the x value
-     */
+
     @Override
-    public double x() {
-        return this.x;
+    public boolean equals(Object other) {
+        if(other instanceof Point otherPoint) {
+            return areDoubleEquals(this.x(), otherPoint.x()) && areDoubleEquals(this.y(), otherPoint.y());
+        }
+        return false;
     }
 
-    /**
-     * Returns the y value.
-     *
-     * @return the y value
-     */
-    @Override
-    public double y() {
-        return this.y;
+    private boolean areDoubleEquals(double val1, double val2) {
+        return val1 == val2 || Math.abs(val1 - val2) <= 0.0001;
     }
 
     /**

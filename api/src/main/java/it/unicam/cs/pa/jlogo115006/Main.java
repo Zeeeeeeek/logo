@@ -28,7 +28,7 @@ public class Main {
                 String outputPath = scanner.nextLine();
                 controller = new Controller(new SimplePlane(planeWidth, planeHeight), new FromConsoleInstructionReader(scanner), outputPath);
                 System.out.println("You can now insert your instructions, one per line. When you are done, type \"exit\".");
-                while (true) if(!controller.runSingleInstruction()) break;
+                while (true) if(controller.runSingleValidInstruction()) break;
             }
             case "1" -> {
                 System.out.println("Insert input path:");
@@ -36,7 +36,7 @@ public class Main {
                 System.out.println("Insert output path:");
                 String outputPath = scanner.nextLine();
                 controller = new Controller(new SimplePlane(planeWidth, planeHeight), inputPath, outputPath);
-                controller.run();
+                controller.runAll();
             }
             default -> throw new IllegalArgumentException("Invalid mode");
         }

@@ -22,15 +22,6 @@ public record Polygon(List<Line> lines, Colour colour) implements Shape {
         logger.info("Polygon successfully created");
     }
 
-    /**
-     * Return the colour of the shape.
-     *
-     * @return the colour of the shape.
-     */
-    @Override
-    public Colour colour() {
-        return this.colour;
-    }
 
     /**
      * This method returns a string representation of the shape.
@@ -52,13 +43,4 @@ public record Polygon(List<Line> lines, Colour colour) implements Shape {
         return this.lines.size();
     }
 
-    /**
-     * Returns the list of lines composing the polygon.
-     *
-     * @return the list of lines composing the polygon.
-     */
-    @Override
-    public List<Line> lines() {
-        return lines;
-    }
 }

@@ -11,7 +11,7 @@ import it.unicam.cs.pa.jlogo115006.io.output.*;
 /**
  * Represents a shape drawn by the cursor on a plane.
  */
-public interface Shape extends isExportable {
+public interface Shape extends IsExportable {
     /**
      * Return the colour of the shape.
      * @return the colour of the shape.

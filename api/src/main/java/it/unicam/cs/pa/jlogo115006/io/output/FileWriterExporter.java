@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  * This class will export a plane in a text file.
  */
 public class FileWriterExporter implements Exporter<Plane<? extends Point>> {
-    private final static Logger logger = Logger.getLogger(FileWriterExporter.class.getName());
+    private static final Logger logger = Logger.getLogger(FileWriterExporter.class.getName());
     private final BufferedWriter writer;
     /**
      * Creates a new text exporter that will write in the specified file.
@@ -38,7 +38,6 @@ public class FileWriterExporter implements Exporter<Plane<? extends Point>> {
             writer.write(toBeExported.export());
         } catch (IOException e) {
             logger.severe("Error while writing to file\n" + e.getMessage());
-            throw new RuntimeException(e);
         }
         close();
     }

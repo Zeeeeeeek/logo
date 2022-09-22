@@ -9,7 +9,6 @@ package it.unicam.cs.pa.jlogo115006.executor;
 import it.unicam.cs.pa.jlogo115006.commands.*;
 import it.unicam.cs.pa.jlogo115006.commands.movement.*;
 import it.unicam.cs.pa.jlogo115006.commands.pen.*;
-import it.unicam.cs.pa.jlogo115006.executor.*;
 import it.unicam.cs.pa.jlogo115006.screen.*;
 import it.unicam.cs.pa.jlogo115006.screen.shapes.*;
 import org.junit.jupiter.api.*;
@@ -17,10 +16,9 @@ import org.junit.jupiter.api.*;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-public class SimpleDesignerTest {
+ class SimpleDesignerTest {
     @Test
-    public void shouldRunSingleCommands() {
+    void shouldRunSingleCommands() {
         Plane<SimplePoint> plane = new SimplePlane(50, 50);
         Designer designer = new SimpleDesigner(plane);
         designer.execute(new MoveCommand(List.of("FORWARD", "10")));
@@ -30,11 +28,11 @@ public class SimpleDesignerTest {
     }
 
     @Test
-    public void shouldRunListOfCommands() {
+    void shouldRunListOfCommands() {
         Plane<SimplePoint> plane = new SimplePlane(50, 50);
         Designer designer = new SimpleDesigner(plane);
         designer.execute(getSampleCommands());
-        assertTrue(new SimplePoint(25, 15).equals(plane.getCursorPosition()));
+        assertEquals(new SimplePoint(25, 15), plane.getCursorPosition());
         assertEquals(270, plane.getCursor().getDirection());
         assertEquals(2, plane.getShapes().size());
         assertEquals(1, countPolygonInPlane(plane));

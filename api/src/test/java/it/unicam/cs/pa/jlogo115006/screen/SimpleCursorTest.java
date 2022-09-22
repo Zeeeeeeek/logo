@@ -12,10 +12,10 @@ import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class SimpleCursorTest {
+class SimpleCursorTest {
 
     @Test
-    public void shouldBeCreatedWithDefaultValues() {
+    void shouldBeCreatedWithDefaultValues() {
         SimpleCursor cursor = new SimpleCursor();
         assertEquals(0, cursor.getDirection());
         assertTrue(cursor.getPlot());
@@ -25,7 +25,7 @@ public class SimpleCursorTest {
     }
 
     @Test
-    public void shouldBeCreatedWithSpecifiedValues() {
+    void shouldBeCreatedWithSpecifiedValues() {
         SimpleCursor cursor = new SimpleCursor(90, false,
                 new RGBColour(255, 0, 0), new RGBColour(0, 255, 0), 2);
         assertEquals(90, cursor.getDirection());
@@ -36,7 +36,7 @@ public class SimpleCursorTest {
     }
 
     @Test
-    public void shouldRotateWithPositiveValues() {
+    void shouldRotateWithPositiveValues() {
         SimpleCursor cursor = new SimpleCursor();
         cursor.rotate(180);
         assertEquals(180, cursor.getDirection());
@@ -45,7 +45,7 @@ public class SimpleCursorTest {
     }
 
     @Test
-    public void shouldRotateWithNegativeValues() {
+    void shouldRotateWithNegativeValues() {
         SimpleCursor cursor = new SimpleCursor();
         cursor.rotate(-180);
         assertEquals(180, cursor.getDirection());
@@ -54,20 +54,20 @@ public class SimpleCursorTest {
     }
 
     @Test
-    public void shouldChangePenSize() {
+    void shouldChangePenSize() {
         SimpleCursor cursor = new SimpleCursor();
         cursor.setPenSize(20);
         assertEquals(20, cursor.getPenSize());
     }
 
     @Test
-    public void shouldNotChangePenSize() {
+    void shouldNotChangePenSize() {
         SimpleCursor cursor = new SimpleCursor();
         assertThrows(IllegalArgumentException.class, () -> cursor.setPenSize(-20));
     }
 
     @Test
-    public void shouldChangeColours() {
+    void shouldChangeColours() {
         SimpleCursor cursor = new SimpleCursor();
         Colour colour1 = new RGBColour(255, 0, 0);
         Colour colour2 = new RGBColour(255, 0, 10);
@@ -78,7 +78,7 @@ public class SimpleCursorTest {
     }
 
     @Test
-    public void shouldNotChangeColours() {
+    void shouldNotChangeColours() {
         SimpleCursor cursor = new SimpleCursor();
         assertThrows(NullPointerException.class, () -> cursor.setLineColour(null));
         assertThrows(NullPointerException.class, () -> cursor.setShapeColour(null));
