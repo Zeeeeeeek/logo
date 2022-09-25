@@ -16,9 +16,9 @@ public class Main {
     public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Welcome to JLogo!\nInsert plane width:");
-        double planeWidth = scanner.nextDouble();
+        double planeWidth = requireValidDoubleInput(scanner);
         System.out.println("Insert plane height:");
-        double planeHeight = scanner.nextDouble();
+        double planeHeight = requireValidDoubleInput(scanner);
         System.out.println("Select your input mode:\n1 File\n2 Console");
         scanner.nextLine();
         Controller controller;
@@ -27,8 +27,9 @@ public class Main {
                 System.out.println("Please insert output file path:");
                 String outputPath = scanner.nextLine();
                 controller = new Controller(new SimplePlane(planeWidth, planeHeight), new FromConsoleInstructionReader(scanner), outputPath);
-                System.out.println("You can now insert your instructions, one per line. When you are done, type \"exit\".");
-                while (true) if(controller.runSingleValidInstruction()) break;
+                System.out.println("You can now insert your instructions, one per line. When you are done, type \"exit\" or insert an empty line.");
+                while (true) if(!controller.runSingleValidInstruction()) break;
+
             }
             case "1" -> {
                 System.out.println("Insert input path:");
@@ -43,5 +44,19 @@ public class Main {
         controller.export();
         System.out.println("Done!");
         scanner.close();
+    }
+
+    private static double requireValidDoubleInput(Scanner scanner) {
+        double toReturn;
+        while (true) {
+            try {
+                toReturn = scanner.nextDouble();
+                break;
+            } catch (InputMismatchException e) {
+                System.out.println("An invalid value has been passed, please insert a valid double");
+                scanner.nextLine();
+            }
+        }
+        return toReturn;
     }
 }
