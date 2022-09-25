@@ -7,13 +7,15 @@ A logo language interpreter
 ## Examples
 
 #### Example 1
-![example1]()
+![example1](https://user-images.githubusercontent.com/84250659/192154307-807d0fca-4751-4533-856c-ecc9cc32a9d5.png)
+
 ```css
 setpencolor 255 139 15
 repeat 12 [ repeat 75 [ fd 100 bd 100 rt 2 ] fd 250 ]
 ```
 #### Example 2
-![example2]()
+![example2](https://user-images.githubusercontent.com/84250659/192154324-6a8c87a0-e962-4572-bc69-0212073af807.png)
+
 ```css
 setfillcolor 143 255 58
 setscreencolor 255 71 214
@@ -22,7 +24,8 @@ repeat 400 [ repeat 34 [ fd 12 rt 10 ] rt 90 ]
 ```
 
 #### Example 3
-![example3]()
+![example3](https://user-images.githubusercontent.com/84250659/192154335-82cd1cb0-30fa-42fb-b0a8-91dcb343dac8.png)
+
 ```css
 setpencolor 166 23 255
 repeat 24 [ repeat 25 [ fd 50 bd 50 rt 15 ] fd 50 ]
