@@ -36,8 +36,15 @@ public record SimplePoint(double x, double y) implements Point {
     }
 
 
+    /**
+     * Returns true if the point is equal to the given element.
+     * @param other the other element
+     * @return true if the point is equal to the given element
+     */
     @Override
     public boolean equals(Object other) {
+        if (other == null) return false;
+        if (other == this) return true;
         if(other instanceof Point otherPoint) {
             return areDoubleEquals(this.x(), otherPoint.x()) && areDoubleEquals(this.y(), otherPoint.y());
         }
