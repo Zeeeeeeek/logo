@@ -21,7 +21,7 @@ public class RotateCommand implements Command {
     private final int angle;
 
     /**
-     * Creates a new RotateCommand with the given orientation and angle
+     * Creates a new {@link RotateCommand} with the given orientation and angle
      * @param args the arguments of the command, this list must contain the orientation and the angle
      * @throws IllegalArgumentException if the arguments amount is not 2 or the orientation is invalid
      * @throws NumberFormatException if the angle is not a number

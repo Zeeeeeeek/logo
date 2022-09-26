@@ -16,6 +16,12 @@ public record Polygon(List<Line> lines, Colour colour) implements Shape {
 
     private static final Logger logger = Logger.getLogger(Polygon.class.getName());
 
+    /**
+     * Creates a new polygon with the given lines and colour.
+     * @param lines the lines of the polygon
+     * @param colour the colour of the polygon
+     */
+
     public Polygon {
         Objects.requireNonNull(lines);
         Objects.requireNonNull(colour);

@@ -72,6 +72,7 @@ public class Controller {
      * @return false if the instruction is "exit" or if the reader has no more instructions to read, true otherwise.
      */
     public boolean runSingleValidInstruction() {
+        System.out.println("Insert instruction:");
         String line = reader.readLine();
         if(line.isEmpty() || line.equalsIgnoreCase("exit")) return false;
         designer.execute(interpreter.createCommand(line));

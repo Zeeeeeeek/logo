@@ -21,7 +21,7 @@ public class SetScreenColorCommand implements Command {
     private final Colour newBackgroundColour;
 
     /**
-     * Creates a new instance of the command with the given colour.
+     * Creates a new {@link SetScreenColorCommand} with the given background colour.
      *
      * @param args colour values.
      *

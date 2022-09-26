@@ -24,6 +24,11 @@ public interface Plane<P extends Point> extends IsExportable {
      */
     P getCursorPosition();
 
+    /**
+     * Returns the cursor.
+     *
+     * @return the cursor.
+     */
     Cursor getCursor();
 
     /**

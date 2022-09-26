@@ -19,7 +19,7 @@ public class ChangePenStatusCommand implements Command {
     private final PenStatus status;
 
     /**
-     * Creates a new ChangePenStatusCommand with the given status.
+     * Creates a new {@link ChangePenStatusCommand} with the given status.
      * @param arg the status to set
      * @throws IllegalArgumentException if the status is invalid
      */

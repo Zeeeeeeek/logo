@@ -27,9 +27,9 @@ public interface Point extends IsExportable {
     double y();
 
     /**
-     * Returns true if the point is equal to the given point.
+     * Returns true if the point is equal to the given element.
      * @param other the other element
-     * @return true if the point is equal to the given point
+     * @return true if the point is equal to the given element.
      */
     @Override
     boolean equals(Object other);

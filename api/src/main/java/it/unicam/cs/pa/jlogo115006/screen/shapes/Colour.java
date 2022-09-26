@@ -10,7 +10,7 @@ package it.unicam.cs.pa.jlogo115006.screen.shapes;
 import it.unicam.cs.pa.jlogo115006.io.output.*;
 
 /**
- * Represents a color in the logo language.
+ * Represents a colour in the logo language.
  */
 public interface Colour extends IsExportable {
     /**

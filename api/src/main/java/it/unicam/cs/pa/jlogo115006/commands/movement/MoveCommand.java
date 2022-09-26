@@ -19,7 +19,7 @@ public class MoveCommand implements Command {
     private final MovementDirection direction;
     private final double distance;
     /**
-     * Creates a new move command based on the given arguments.
+     * Creates a new {@link MoveCommand} based on the given arguments.
      * @param args list of arguments.
      *
      * @throws IllegalArgumentException if the arguments are not 2. Or if the first argument is an invalid direction.

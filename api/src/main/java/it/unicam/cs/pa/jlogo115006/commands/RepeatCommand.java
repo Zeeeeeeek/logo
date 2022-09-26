@@ -12,13 +12,16 @@ import it.unicam.cs.pa.jlogo115006.screen.shapes.*;
 
 import java.util.*;
 
+/**
+ * Represents a command that repeat a sequence of commands.
+ */
 public class RepeatCommand implements Command {
 
     private final List<Command> commands;
     private final int times;
 
     /**
-     * Creates a new repeat command that will execute the commands for the specified times
+     * Creates a new {@link RepeatCommand} that will execute the commands for the specified times
      * @param times the number of times the commands will be executed
      * @param commands the commands to execute
      *
